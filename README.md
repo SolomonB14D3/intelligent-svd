@@ -109,6 +109,20 @@ pip install torch transformers datasets safetensors lm-eval scipy numpy
 pip install mlx mlx-lm
 ```
 
+### Quick Demo
+
+See the key findings yourself in ~30 minutes:
+
+```bash
+# Llama 2 7B (default) — knowledge protection + repetition reduction
+python examples/quick_demo.py
+
+# Smaller model, faster (~5 min)
+python examples/quick_demo.py --model Qwen/Qwen2.5-0.5B
+```
+
+This runs both experiments end-to-end: CF90 knowledge protection under conflicting fine-tuning (78% vs 32% retention) and the generation quality test showing repetition drops from 40% to 25% at 7B scale.
+
 ### Run Benchmarks
 
 ```bash
@@ -151,6 +165,15 @@ python experiments/run_final_validation.py
 | D-Llama | CF90 + INT8 on Llama 2 7B (3 seeds) | 78% retention; CF90 reduces repetition from 40% to 25% |
 
 See [RESULTS.md](RESULTS.md) for detailed numbers and analysis.
+
+## Connection to Confidence Cartography
+
+This work pairs with [Confidence Cartography](https://github.com/SolomonB14D3/confidence-cartography), which maps where a model is uncertain by measuring the probability it assigns to its own tokens (teacher-forced confidence). Together they form a two-stage pipeline:
+
+1. **Cartography** identifies *which* weight regions encode uncertain or contested knowledge (ρ = 0.652 correlation with human false-belief prevalence, p = 0.016).
+2. **Intelligent SVD** determines *how* to protect those weights during fine-tuning, compressing the noise out of attention projections so that downstream updates cannot overwrite factual signal.
+
+The practical implication: run confidence cartography first to locate fragile knowledge, then apply CF90 to lock it in before any further training. This converts a 3–5× compute overhead into a targeted intervention rather than a blanket freeze.
 
 ## Citation
 
