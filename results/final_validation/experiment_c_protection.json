@@ -1,0 +1,214 @@
+{
+  "No protection": {
+    "seed_0": {
+      "retention_rate": 0.05,
+      "correct": 1,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.05,
+      "correct": 1,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.0,
+      "correct": 0,
+      "total": 20
+    },
+    "seed_3": {
+      "retention_rate": 0.05,
+      "correct": 1,
+      "total": 20
+    },
+    "seed_4": {
+      "retention_rate": 0.05,
+      "correct": 1,
+      "total": 20
+    }
+  },
+  "Freeze 75% only": {
+    "seed_0": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.6,
+      "correct": 12,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    },
+    "seed_3": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    },
+    "seed_4": {
+      "retention_rate": 0.6,
+      "correct": 12,
+      "total": 20
+    }
+  },
+  "CF90 (freeze 75% + compress)": {
+    "seed_0": {
+      "retention_rate": 0.7,
+      "correct": 14,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.75,
+      "correct": 15,
+      "total": 20
+    },
+    "seed_3": {
+      "retention_rate": 0.7,
+      "correct": 14,
+      "total": 20
+    },
+    "seed_4": {
+      "retention_rate": 0.75,
+      "correct": 15,
+      "total": 20
+    }
+  },
+  "Freeze 90% only": {
+    "seed_0": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    },
+    "seed_3": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    },
+    "seed_4": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    }
+  },
+  "CF90 (freeze 90% + compress)": {
+    "seed_0": {
+      "retention_rate": 0.75,
+      "correct": 15,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.8,
+      "correct": 16,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.8,
+      "correct": 16,
+      "total": 20
+    },
+    "seed_3": {
+      "retention_rate": 0.8,
+      "correct": 16,
+      "total": 20
+    },
+    "seed_4": {
+      "retention_rate": 0.8,
+      "correct": 16,
+      "total": 20
+    }
+  },
+  "summary": {
+    "No protection": {
+      "mean": 0.04,
+      "std": 0.022360679774997897,
+      "min": 0.0,
+      "max": 0.05,
+      "ci95": 0.0196,
+      "n": 5,
+      "values": [
+        0.05,
+        0.05,
+        0.0,
+        0.05,
+        0.05
+      ]
+    },
+    "Freeze 75% only": {
+      "mean": 0.63,
+      "std": 0.02738612787525833,
+      "min": 0.6,
+      "max": 0.65,
+      "ci95": 0.024004999479275164,
+      "n": 5,
+      "values": [
+        0.65,
+        0.6,
+        0.65,
+        0.65,
+        0.6
+      ]
+    },
+    "CF90 (freeze 75% + compress)": {
+      "mean": 0.71,
+      "std": 0.04183300132670378,
+      "min": 0.65,
+      "max": 0.75,
+      "ci95": 0.036668242390384624,
+      "n": 5,
+      "values": [
+        0.7,
+        0.65,
+        0.75,
+        0.7,
+        0.75
+      ]
+    },
+    "Freeze 90% only": {
+      "mean": 0.65,
+      "std": 0.0,
+      "min": 0.65,
+      "max": 0.65,
+      "ci95": 0.0,
+      "n": 5,
+      "values": [
+        0.65,
+        0.65,
+        0.65,
+        0.65,
+        0.65
+      ]
+    },
+    "CF90 (freeze 90% + compress)": {
+      "mean": 0.79,
+      "std": 0.022360679774997918,
+      "min": 0.75,
+      "max": 0.8,
+      "ci95": 0.019600000000000017,
+      "n": 5,
+      "values": [
+        0.75,
+        0.8,
+        0.8,
+        0.8,
+        0.8
+      ]
+    }
+  }
+}
