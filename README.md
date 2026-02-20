@@ -6,11 +6,11 @@ Knowledge-preserving compression for large language models via importance-guided
 
 | Finding | Result | Model |
 |---------|--------|-------|
-| SVD compression improves TruthfulQA | 39.1% → 44.1% (+5.0%) | Qwen 0.5B |
-| Fact retention with CF90 + gentle FT | 60% → 75% (+15% vs freeze-only) | Qwen 0.5B |
+| CF90 knowledge protection (p=0.0072) | 79% retention vs 65% freeze-only | Qwen 0.5B |
+| CF90 beats LoRA on fact retention | 73% vs 68% (LoRA r=8) | Qwen 0.5B |
+| SVD + INT8 vs INT8 alone | 85.3% vs 80.0% composite (+5.3%) | Qwen 1.5B |
+| CF90 + INT8 full pipeline | 72% retention vs 58% unprotected | Qwen 0.5B |
 | Importance-guided SVD at 50% compression | 73.3% vs 46.7% standard (3x better) | Qwen 0.5B |
-| Train-big-compress-smart vs train-small | +55.6% accuracy | Toy transformer |
-| SVD + INT8 vs INT8 alone | 85.3% vs 80.0% composite | Qwen 1.5B |
 | CF90 at 7B scale | 73% maintained (no degradation) | Qwen 7B |
 
 ## Method: CF90 (Compress-Freeze)
@@ -20,6 +20,12 @@ Knowledge-preserving compression for large language models via importance-guided
 3. **Fine-tune gently** (1 epoch, 1e-5 LR)
 
 SVD compression removes noise from attention weight matrices while preserving the signal directions most important for factual knowledge. Freezing prevents catastrophic forgetting. The combination achieves better knowledge retention than either technique alone.
+
+### Important: Scale-Dependent Generation Quality
+
+CF90 preserves factual knowledge at all scales, but **degrades generation quality (fluency, coherence) on models below ~1B parameters**. At 0.5B, CF90 increases 3-gram repetition from 5% to 33%. This does not occur at 7B+ where IFEval (instruction following) remains at 95% and HumanEval (code) at 98%.
+
+**Recommendation**: Use CF90 on 7B+ models for production. On smaller models, use it only when fact retention matters more than generation quality (e.g., knowledge distillation, fact-checking, retrieval).
 
 ### Compression Safety Guide
 
@@ -109,6 +115,10 @@ python experiments/run_final_validation.py
 | 16 | Conflicting data | Measures forgetting under data conflict |
 | 18 | Knowledge protection | **CF90: 75% retention vs 5% unprotected** |
 | 21 | CF90 hierarchical | TruthfulQA +5%, validated at 7B scale |
+| A | SVD90 vs baseline (5 seeds) | No significant benchmark difference |
+| B | CF90 vs LoRA (3 seeds) | CF90 73% > LoRA-r8 68% |
+| C | CF90 protection (5 seeds) | **p=0.0072**, CF90 79% vs freeze 65% |
+| D | CF90 + INT8 full pipeline | 72% retention through quant; generation quality tradeoff |
 
 See [RESULTS.md](RESULTS.md) for detailed numbers and analysis.
 
