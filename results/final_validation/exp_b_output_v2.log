@@ -1,0 +1,103 @@
+/Users/bryan/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/bryan/Library/Python/3.9/lib/python/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+
+======================================================================
+EXPERIMENT B: CF90 vs LoRA (fact retention, 3 seeds)
+======================================================================
+
+--- Seed 0 ---
+
+  Condition: no_protection
+`torch_dtype` is deprecated! Use `dtype` instead!
+    Pre-FT retention: 70%
+    Post-FT retention: 80%
+
+  Condition: freeze_only
+    Pre-FT retention: 70%
+    Frozen 18/24 layers
+    Post-FT retention: 60%
+
+  Condition: cf90
+    Pre-FT retention: 70%
+    Compressed 72 matrices
+    Frozen 18/24 layers
+    Post-FT retention: 75%
+
+  Condition: lora_r8
+    Pre-FT retention: 70%
+    LoRA r=8: 1,081,344 trainable params
+    Post-FT retention: 70%
+
+  Condition: lora_r16
+    Pre-FT retention: 70%
+    LoRA r=16: 2,162,688 trainable params
+    Post-FT retention: 70%
+
+--- Seed 1 ---
+
+  Condition: no_protection
+    Pre-FT retention: 70%
+    Post-FT retention: 75%
+
+  Condition: freeze_only
+    Pre-FT retention: 70%
+    Frozen 18/24 layers
+    Post-FT retention: 65%
+
+  Condition: cf90
+    Pre-FT retention: 70%
+    Compressed 72 matrices
+    Frozen 18/24 layers
+    Post-FT retention: 70%
+
+  Condition: lora_r8
+    Pre-FT retention: 70%
+    LoRA r=8: 1,081,344 trainable params
+    Post-FT retention: 65%
+
+  Condition: lora_r16
+    Pre-FT retention: 70%
+    LoRA r=16: 2,162,688 trainable params
+    Post-FT retention: 65%
+
+--- Seed 2 ---
+
+  Condition: no_protection
+    Pre-FT retention: 70%
+    Post-FT retention: 75%
+
+  Condition: freeze_only
+    Pre-FT retention: 70%
+    Frozen 18/24 layers
+    Post-FT retention: 65%
+
+  Condition: cf90
+    Pre-FT retention: 70%
+    Compressed 72 matrices
+    Frozen 18/24 layers
+    Post-FT retention: 75%
+
+  Condition: lora_r8
+    Pre-FT retention: 70%
+    LoRA r=8: 1,081,344 trainable params
+    Post-FT retention: 70%
+
+  Condition: lora_r16
+    Pre-FT retention: 70%
+    LoRA r=16: 2,162,688 trainable params
+    Post-FT retention: 65%
+
+--- Summary ---
+  no_protection: 77% ± 3%
+  freeze_only: 63% ± 3%
+  cf90: 73% ± 3%
+  lora_r8: 68% ± 3%
+  lora_r16: 67% ± 3%
+  Saved: /Users/bryan/Useful/intelligent-svd/results/final_validation/experiment_b_cf90_vs_lora.json
+
+======================================================================
+ALL EXPERIMENTS COMPLETE in 0.1 hours
+Results saved to: /Users/bryan/Useful/intelligent-svd/results/final_validation
+======================================================================
