@@ -1,0 +1,2799 @@
+{
+  "baseline_fp32": {
+    "seed_0": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": false,
+      "conv_ppl": 6.787550926208496,
+      "repetition_rate": 0.05304695304695304,
+      "distinct_ratio": 0.6174525791614399,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 80,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6375
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, a seat, and pedals that are used to pedal the bike. The pedals are connected to the chain that runs th",
+          "n_tokens": 80,
+          "repetition_rate": 0.07692307692307687,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": false,
+      "conv_ppl": 6.787550926208496,
+      "repetition_rate": 0.05304695304695304,
+      "distinct_ratio": 0.6174525791614399,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 80,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6375
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, a seat, and pedals that are used to pedal the bike. The pedals are connected to the chain that runs th",
+          "n_tokens": 80,
+          "repetition_rate": 0.07692307692307687,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": false,
+      "conv_ppl": 6.787550926208496,
+      "repetition_rate": 0.05304695304695304,
+      "distinct_ratio": 0.6174525791614399,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 80,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6375
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, a seat, and pedals that are used to pedal the bike. The pedals are connected to the chain that runs th",
+          "n_tokens": 80,
+          "repetition_rate": 0.07692307692307687,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    }
+  },
+  "baseline_int8": {
+    "seed_0": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.6,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 12,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": false,
+      "conv_ppl": 8.036471366882324,
+      "repetition_rate": 0.06423576423576423,
+      "distinct_ratio": 0.5884177215189874,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the Earth's atmosphere, it is scattered and reflected by tiny particles in the atmosphere. These particles are called \"air molecule",
+          "n_tokens": 80,
+          "repetition_rate": 0.0641025641025641,
+          "distinct_ratio": 0.5625
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food safety, and the preservation of ecosystems. Without clean water, many diseases and illnesses can occur, leading to a range of health problems and econom",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5375
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and blood vessels, which can lead to a healthier heart and more efficient circulation. This can help prev",
+          "n_tokens": 79,
+          "repetition_rate": 0.012987012987012991,
+          "distinct_ratio": 0.6835443037974683
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a frame. The frame is connected to the wheels by a chain and a c",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.475
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to expect. What should I expect from my first day at work?\"\n\n1. Start by taking a few minutes to get to know the company and its culture. Ask about the",
+          "n_tokens": 79,
+          "repetition_rate": 0.038961038961038974,
+          "distinct_ratio": 0.6835443037974683
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.6,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 12,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": false,
+      "conv_ppl": 8.036471366882324,
+      "repetition_rate": 0.06423576423576423,
+      "distinct_ratio": 0.5884177215189874,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the Earth's atmosphere, it is scattered and reflected by tiny particles in the atmosphere. These particles are called \"air molecule",
+          "n_tokens": 80,
+          "repetition_rate": 0.0641025641025641,
+          "distinct_ratio": 0.5625
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food safety, and the preservation of ecosystems. Without clean water, many diseases and illnesses can occur, leading to a range of health problems and econom",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5375
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and blood vessels, which can lead to a healthier heart and more efficient circulation. This can help prev",
+          "n_tokens": 79,
+          "repetition_rate": 0.012987012987012991,
+          "distinct_ratio": 0.6835443037974683
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a frame. The frame is connected to the wheels by a chain and a c",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.475
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to expect. What should I expect from my first day at work?\"\n\n1. Start by taking a few minutes to get to know the company and its culture. Ask about the",
+          "n_tokens": 79,
+          "repetition_rate": 0.038961038961038974,
+          "distinct_ratio": 0.6835443037974683
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.6,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 12,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": false,
+      "conv_ppl": 8.036471366882324,
+      "repetition_rate": 0.06423576423576423,
+      "distinct_ratio": 0.5884177215189874,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the Earth's atmosphere, it is scattered and reflected by tiny particles in the atmosphere. These particles are called \"air molecule",
+          "n_tokens": 80,
+          "repetition_rate": 0.0641025641025641,
+          "distinct_ratio": 0.5625
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food safety, and the preservation of ecosystems. Without clean water, many diseases and illnesses can occur, leading to a range of health problems and econom",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5375
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and blood vessels, which can lead to a healthier heart and more efficient circulation. This can help prev",
+          "n_tokens": 79,
+          "repetition_rate": 0.012987012987012991,
+          "distinct_ratio": 0.6835443037974683
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a frame. The frame is connected to the wheels by a chain and a c",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.475
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to expect. What should I expect from my first day at work?\"\n\n1. Start by taking a few minutes to get to know the company and its culture. Ask about the",
+          "n_tokens": 79,
+          "repetition_rate": 0.038961038961038974,
+          "distinct_ratio": 0.6835443037974683
+        }
+      ]
+    }
+  },
+  "no_protection_fp32": {
+    "seed_0": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.8,
+      "post_quant_retention": 0.8,
+      "facts_retained_post_ft": 16,
+      "facts_retained_post_quant": 16,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 6.957984924316406,
+      "repetition_rate": 0.043889443889443894,
+      "distinct_ratio": 0.5066882782751879,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 60,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6833333333333333
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It is typically made up of a frame, wheels, and a chain mechanism. The frame is usually made of metal or plastic and is ",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What do you want to know about starting a job?",
+          "n_tokens": 41,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.7804878048780488
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.75,
+      "post_quant_retention": 0.75,
+      "facts_retained_post_ft": 15,
+      "facts_retained_post_quant": 15,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 6.808565139770508,
+      "repetition_rate": 0.05817515817515817,
+      "distinct_ratio": 0.6291192458281066,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 60,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6833333333333333
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It is typically made up of a frame, a seat, a handlebar, and a chain. The frame is usually made of metal or plastic an",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.75,
+      "post_quant_retention": 0.75,
+      "facts_retained_post_ft": 15,
+      "facts_retained_post_quant": 15,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 6.964411735534668,
+      "repetition_rate": 0.05817515817515817,
+      "distinct_ratio": 0.6379071246159854,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we would face severe health problems, foo",
+          "n_tokens": 44,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.7272727272727273
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It is typically made up of a frame, wheels, and a chain mechanism. The frame is usually made of metal or plastic and is ",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    }
+  },
+  "no_protection_int8": {
+    "seed_0": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.8,
+      "post_quant_retention": 0.85,
+      "facts_retained_post_ft": 16,
+      "facts_retained_post_quant": 17,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 7.95676326751709,
+      "repetition_rate": 0.025740925740925746,
+      "distinct_ratio": 0.6595230451865485,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the atmosphere, it is scattered and reflected by tiny particles in the air, such as water droplets or ice crystals. These particles",
+          "n_tokens": 51,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.7254901960784313
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food security, and the well-being of ecosystems. It is also crucial for the survival of aquatic life and the protection of natural resources. Without clean w",
+          "n_tokens": 53,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6792452830188679
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the heart's efficiency and function, leading to better blood flow and reduced risk of heart disease.\n\n2. Increased energy levels: E",
+          "n_tokens": 79,
+          "repetition_rate": 0.025974025974025983,
+          "distinct_ratio": 0.7468354430379747
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, wheels, and a frame that is attached to the wheels. The frame is made of metal and is designed to be str",
+          "n_tokens": 80,
+          "repetition_rate": 0.08974358974358976,
+          "distinct_ratio": 0.4625
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to expect. What should I expect from my first day at my new job?\"\n\n1. Start by taking a few minutes to get to know the company and its culture. Ask abo",
+          "n_tokens": 79,
+          "repetition_rate": 0.012987012987012991,
+          "distinct_ratio": 0.6835443037974683
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.55,
+      "post_quant_retention": 0.45,
+      "facts_retained_post_ft": 11,
+      "facts_retained_post_quant": 9,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.073246002197266,
+      "repetition_rate": 0.08388944388944389,
+      "distinct_ratio": 0.5493476501340127,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. The sunlight is made up of different colors of light, and when it hits the sky, it reflects those colors back to us. The blue color of the sky is due ",
+          "n_tokens": 72,
+          "repetition_rate": 0.19999999999999996,
+          "distinct_ratio": 0.4027777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food security, and the well-being of ecosystems. It is also crucial for the survival of aquatic life and the protection of natural resources. Without clean w",
+          "n_tokens": 53,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6792452830188679
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the heart's efficiency and function, leading to a healthier heart and reduced risk of heart disease.\n\n2. Increased muscle strength ",
+          "n_tokens": 79,
+          "repetition_rate": 0.051948051948051965,
+          "distinct_ratio": 0.6075949367088608
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a seat. The frame is made of metal or plastic and is attached ",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. What should I do first?\"\n\n1. Take a few minutes to reflect on your goals and aspirations for the job. What do you want to achieve? What are your",
+          "n_tokens": 79,
+          "repetition_rate": 0.06493506493506496,
+          "distinct_ratio": 0.569620253164557
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.5,
+      "post_quant_retention": 0.45,
+      "facts_retained_post_ft": 10,
+      "facts_retained_post_quant": 9,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.12706470489502,
+      "repetition_rate": 0.0657076257076257,
+      "distinct_ratio": 0.5999805615264178,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. The sunlight is made up of different colors of light, and when it hits the sky, it reflects those colors back to us. The blue color of the sky is due ",
+          "n_tokens": 72,
+          "repetition_rate": 0.19999999999999996,
+          "distinct_ratio": 0.4027777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food security, and the preservation of ecosystems. It is also crucial for the well-being of aquatic life and the protection of natural resources. Without cle",
+          "n_tokens": 53,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6792452830188679
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the heart's efficiency and function, leading to better blood circulation and reduced risk of heart disease.\n\n2. Increased energy le",
+          "n_tokens": 79,
+          "repetition_rate": 0.025974025974025983,
+          "distinct_ratio": 0.7468354430379747
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a seat. The frame is made of metal or plastic and is attached ",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to expect. What should I expect from my first day at work?\"\n\n1. Start by taking a few minutes to get to know the company and its culture. Ask about the",
+          "n_tokens": 79,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6835443037974683
+        }
+      ]
+    }
+  },
+  "freeze75_fp32": {
+    "seed_0": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.65,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 13,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 6.8949785232543945,
+      "repetition_rate": 0.050482850482850485,
+      "distinct_ratio": 0.6266192458281066,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 60,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6833333333333333
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, wheels, and a chain that connects the wheels to the frame. The rider pedals the pedals to turn the chain",
+          "n_tokens": 80,
+          "repetition_rate": 0.0641025641025641,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.65,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 13,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 6.896755218505859,
+      "repetition_rate": 0.04791874791874793,
+      "distinct_ratio": 0.6341192458281066,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 60,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6833333333333333
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, wheels, and a chain that connects the wheels to the frame. The rider pedals the pedals to turn the chain",
+          "n_tokens": 80,
+          "repetition_rate": 0.05128205128205132,
+          "distinct_ratio": 0.525
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 6.89193058013916,
+      "repetition_rate": 0.050482850482850485,
+      "distinct_ratio": 0.6266192458281066,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 60,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6833333333333333
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, wheels, and a chain that connects the wheels to the frame. The rider pedals the pedals to turn the chain",
+          "n_tokens": 80,
+          "repetition_rate": 0.0641025641025641,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    }
+  },
+  "freeze75_int8": {
+    "seed_0": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.6,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 12,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.164447784423828,
+      "repetition_rate": 0.06423576423576423,
+      "distinct_ratio": 0.5745684278114107,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the atmosphere, it is scattered and reflected by tiny particles in the air, such as water droplets or ice crystals. These particles",
+          "n_tokens": 80,
+          "repetition_rate": 0.16666666666666663,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food security, and the well-being of ecosystems. It is also crucial for the survival of aquatic life and the protection of natural resources. Without clean w",
+          "n_tokens": 69,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.5942028985507246
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the heart's efficiency and function, leading to better blood circulation and reduced risk of heart disease.\n\n2. Increased muscle st",
+          "n_tokens": 79,
+          "repetition_rate": 0.012987012987012991,
+          "distinct_ratio": 0.6962025316455697
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a seat. The frame is usually made of metal or plastic and is att",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. What should I do first?\"\n\n1. Take a few minutes to reflect on your goals and aspirations for the job. What do you want to achieve? What are your",
+          "n_tokens": 79,
+          "repetition_rate": 0.038961038961038974,
+          "distinct_ratio": 0.5949367088607594
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.6,
+      "post_quant_retention": 0.65,
+      "facts_retained_post_ft": 12,
+      "facts_retained_post_quant": 13,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.156542778015137,
+      "repetition_rate": 0.041158841158841164,
+      "distinct_ratio": 0.5845684278114108,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the atmosphere, it is scattered and reflected by tiny particles in the air, such as water droplets or ice crystals. These particles",
+          "n_tokens": 80,
+          "repetition_rate": 0.05128205128205132,
+          "distinct_ratio": 0.5375
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food security, and the well-being of ecosystems. It is also crucial for the survival of aquatic life and the protection of natural resources. Without clean w",
+          "n_tokens": 69,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.5942028985507246
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the heart's efficiency and function, leading to better blood circulation and reduced risk of heart disease.\n\n2. Increased muscle st",
+          "n_tokens": 79,
+          "repetition_rate": 0.012987012987012991,
+          "distinct_ratio": 0.6962025316455697
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a seat. The frame is usually made of metal or plastic and is att",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. What should I do first?\"\n\n1. Take a few minutes to reflect on your goals and aspirations for the job. What do you want to achieve? What are your",
+          "n_tokens": 79,
+          "repetition_rate": 0.038961038961038974,
+          "distinct_ratio": 0.5949367088607594
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.55,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 11,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.14628791809082,
+      "repetition_rate": 0.07462537462537462,
+      "distinct_ratio": 0.5669734911025499,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the atmosphere, it is scattered and reflected by tiny particles in the air, such as water droplets or ice crystals. These particles",
+          "n_tokens": 80,
+          "repetition_rate": 0.16666666666666663,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food security, and the well-being of ecosystems. It is also crucial for the survival of aquatic life and the protection of natural resources. Without clean w",
+          "n_tokens": 69,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.5942028985507246
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the heart's efficiency and function, leading to better blood circulation and reduced risk of heart disease.\n\n2. Increased muscle st",
+          "n_tokens": 79,
+          "repetition_rate": 0.012987012987012991,
+          "distinct_ratio": 0.6962025316455697
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a seat. The frame is usually made of metal or plastic and is att",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. What should I do first?\"\n\n1. Take a few minutes to reflect on your goals and aspirations for the job. Consider what you want to achieve and what",
+          "n_tokens": 79,
+          "repetition_rate": 0.09090909090909094,
+          "distinct_ratio": 0.5569620253164557
+        }
+      ]
+    }
+  },
+  "freeze90_fp32": {
+    "seed_0": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.65,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 13,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 6.854711055755615,
+      "repetition_rate": 0.04791874791874793,
+      "distinct_ratio": 0.6341192458281066,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 60,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6833333333333333
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, wheels, and a chain that connects the wheels to the frame. The rider pedals the pedals to turn the chain",
+          "n_tokens": 80,
+          "repetition_rate": 0.05128205128205132,
+          "distinct_ratio": 0.525
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.65,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 13,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 6.8595380783081055,
+      "repetition_rate": 0.050482850482850485,
+      "distinct_ratio": 0.6266192458281066,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 60,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6833333333333333
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, wheels, and a chain that connects the wheels to the frame. The rider pedals the pedals to turn the chain",
+          "n_tokens": 80,
+          "repetition_rate": 0.0641025641025641,
+          "distinct_ratio": 0.4875
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.65,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 13,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 6.853285312652588,
+      "repetition_rate": 0.050482850482850485,
+      "distinct_ratio": 0.6291192458281066,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects sunlight. When sunlight hits the Earth's atmosphere, it is scattered and bent by the molecules and particles in the air. The blue light is the most sensitive to the",
+          "n_tokens": 72,
+          "repetition_rate": 0.0714285714285714,
+          "distinct_ratio": 0.5277777777777778
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, agriculture, and industry. It is also crucial for the survival of aquatic life and ecosystems. Without clean water, we risk losing our ability to drink, cook",
+          "n_tokens": 60,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6833333333333333
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the function of the heart and lungs, which can lead to a healthier heart and lungs.\n\n2. Weight management: Exercise can help to bur",
+          "n_tokens": 79,
+          "repetition_rate": 0.11688311688311692,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It has a frame, a seat, and pedals that are used to pedal the bike forward. The pedals are connected to the chain that",
+          "n_tokens": 80,
+          "repetition_rate": 0.0641025641025641,
+          "distinct_ratio": 0.5
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. Can you help me out?\"\n\nSure, I'd be happy to help! What specifically are you unsure about?",
+          "n_tokens": 37,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8648648648648649
+        }
+      ]
+    }
+  },
+  "freeze90_int8": {
+    "seed_0": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.55,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 11,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.18019962310791,
+      "repetition_rate": 0.0692973692973693,
+      "distinct_ratio": 0.6207820976491863,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the sky, it bounces off the objects in the sky and the objects reflect the sunlight. The objects in the sky are made of different m",
+          "n_tokens": 80,
+          "repetition_rate": 0.21794871794871795,
+          "distinct_ratio": 0.3625
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food security, and the well-being of ecosystems. It is a basic right and a fundamental need for all people. Without clean water, life on Earth would be impos",
+          "n_tokens": 42,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.7857142857142857
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the heart's efficiency and function, leading to better blood circulation and reduced risk of heart disease.\n\n2. Increased energy le",
+          "n_tokens": 79,
+          "repetition_rate": 0.025974025974025983,
+          "distinct_ratio": 0.759493670886076
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a seat. The frame is usually made of metal or plastic and is att",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.5
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to expect. What should I be prepared for?\"\n\n1. **Understand the Job**: Before starting your job, it's essential to understand the job description, the ",
+          "n_tokens": 79,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6962025316455697
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.65,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 13,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.1668701171875,
+      "repetition_rate": 0.05154845154845156,
+      "distinct_ratio": 0.5983544303797468,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the atmosphere, it is scattered and reflected by tiny particles in the air, such as water droplets or ice crystals. These particles",
+          "n_tokens": 80,
+          "repetition_rate": 0.05128205128205132,
+          "distinct_ratio": 0.5375
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food safety, and the preservation of ecosystems. It is also crucial for the well-being of aquatic life and the protection of wildlife habitats. Without clean",
+          "n_tokens": 80,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6375
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the heart's efficiency and function, leading to better blood circulation and reduced risk of heart disease.\n\n2. Increased energy le",
+          "n_tokens": 79,
+          "repetition_rate": 0.025974025974025983,
+          "distinct_ratio": 0.759493670886076
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a frame. The frame is connected to the wheels by a chain and a c",
+          "n_tokens": 80,
+          "repetition_rate": 0.10256410256410253,
+          "distinct_ratio": 0.475
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. What should I do first?\"\n\n1. Take a few minutes to reflect on your goals and aspirations for the job. What do you want to achieve? What are your",
+          "n_tokens": 79,
+          "repetition_rate": 0.07792207792207795,
+          "distinct_ratio": 0.5822784810126582
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.7,
+      "post_ft_retention": 0.65,
+      "post_quant_retention": 0.55,
+      "facts_retained_post_ft": 13,
+      "facts_retained_post_quant": 11,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.167372703552246,
+      "repetition_rate": 0.04632034632034634,
+      "distinct_ratio": 0.598422307833425,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "The sky is blue because it reflects the sunlight. When sunlight hits the atmosphere, it is scattered and reflected by tiny particles in the air, such as water droplets or ice crystals. These particles",
+          "n_tokens": 80,
+          "repetition_rate": 0.05128205128205132,
+          "distinct_ratio": 0.5375
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "Clean water is essential for human health, food safety, and the preservation of ecosystems. It is also crucial for the well-being of aquatic life and the protection of natural resources. Without clean",
+          "n_tokens": 69,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.6376811594202898
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise helps to improve the heart's efficiency and function, leading to better blood circulation and reduced risk of heart disease.\n\n2. Increased energy le",
+          "n_tokens": 79,
+          "repetition_rate": 0.025974025974025983,
+          "distinct_ratio": 0.759493670886076
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "A bicycle is a two-wheeled vehicle that is designed to be ridden on two wheels. It consists of a frame, wheels, handlebars, pedals, and a frame. The frame is connected to the wheels by a chain and a c",
+          "n_tokens": 80,
+          "repetition_rate": 0.11538461538461542,
+          "distinct_ratio": 0.4625
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm starting my first job and I'm not sure what to do. What should I do first?\"\n\n1. Take a few minutes to reflect on your goals and aspirations for the job. What do you want to achieve? What are your",
+          "n_tokens": 79,
+          "repetition_rate": 0.038961038961038974,
+          "distinct_ratio": 0.5949367088607594
+        }
+      ]
+    }
+  },
+  "cf90_75_fp32": {
+    "seed_0": {
+      "pre_retention": 0.75,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 7.099738597869873,
+      "repetition_rate": 0.33303363303363304,
+      "distinct_ratio": 0.23302674561045325,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health\n2. Increased muscle mass\n3. Reduced risk of chronic diseases such as heart disease, stroke, and type 2 diabetes",
+          "n_tokens": 31,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8387096774193549
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled ",
+          "n_tokens": 80,
+          "repetition_rate": 0.782051282051282,
+          "distinct_ratio": 0.2125
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do.",
+          "n_tokens": 79,
+          "repetition_rate": 0.8831168831168831,
+          "distinct_ratio": 0.11392405063291139
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.75,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 7.103438377380371,
+      "repetition_rate": 0.33303363303363304,
+      "distinct_ratio": 0.23302674561045325,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health\n2. Increased muscle mass\n3. Reduced risk of chronic diseases such as heart disease, stroke, and type 2 diabetes",
+          "n_tokens": 31,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8387096774193549
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled ",
+          "n_tokens": 80,
+          "repetition_rate": 0.782051282051282,
+          "distinct_ratio": 0.2125
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do.",
+          "n_tokens": 79,
+          "repetition_rate": 0.8831168831168831,
+          "distinct_ratio": 0.11392405063291139
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.75,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 7.105942726135254,
+      "repetition_rate": 0.33303363303363304,
+      "distinct_ratio": 0.23302674561045325,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health\n2. Increased muscle mass\n3. Reduced risk of chronic diseases such as heart disease, stroke, and type 2 diabetes",
+          "n_tokens": 31,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.8387096774193549
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled ",
+          "n_tokens": 80,
+          "repetition_rate": 0.782051282051282,
+          "distinct_ratio": 0.2125
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do.",
+          "n_tokens": 79,
+          "repetition_rate": 0.8831168831168831,
+          "distinct_ratio": 0.11392405063291139
+        }
+      ]
+    }
+  },
+  "cf90_75_int8": {
+    "seed_0": {
+      "pre_retention": 0.75,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.634032249450684,
+      "repetition_rate": 0.08029085342518179,
+      "distinct_ratio": 0.3767809364548495,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise can help you maintain a healthy heart and reduce your risk of heart disease. 2. Increased energy levels: Regular exercise can help you feel more ene",
+          "n_tokens": 69,
+          "repetition_rate": 0.11940298507462688,
+          "distinct_ratio": 0.6521739130434783
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, with two wheels on each side. The bicycle is designed to be ridden by a person, and it is made possible by the use of a chain and a wheel. The bicycle is made pos",
+          "n_tokens": 80,
+          "repetition_rate": 0.28205128205128205,
+          "distinct_ratio": 0.4625
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"It's not about the money, it's about the people.\"",
+          "n_tokens": 13,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.7692307692307693
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.75,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.679587364196777,
+      "repetition_rate": 0.08029085342518179,
+      "distinct_ratio": 0.3767809364548495,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise can help you maintain a healthy heart and reduce your risk of heart disease. 2. Increased energy levels: Regular exercise can help you feel more ene",
+          "n_tokens": 69,
+          "repetition_rate": 0.11940298507462688,
+          "distinct_ratio": 0.6521739130434783
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, with two wheels on each side. The bicycle is designed to be ridden by a person, and it is made possible by the use of a chain and a wheel. The bicycle is made pos",
+          "n_tokens": 80,
+          "repetition_rate": 0.28205128205128205,
+          "distinct_ratio": 0.4625
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"It's not about the money, it's about the people.\"",
+          "n_tokens": 13,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.7692307692307693
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.75,
+      "post_ft_retention": 0.7,
+      "post_quant_retention": 0.65,
+      "facts_retained_post_ft": 14,
+      "facts_retained_post_quant": 13,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.659634590148926,
+      "repetition_rate": 0.08029085342518179,
+      "distinct_ratio": 0.3767809364548495,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health: Regular exercise can help you maintain a healthy heart and reduce your risk of heart disease. 2. Increased energy levels: Regular exercise can help you feel more ene",
+          "n_tokens": 69,
+          "repetition_rate": 0.11940298507462688,
+          "distinct_ratio": 0.6521739130434783
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, with two wheels on each side. The bicycle is designed to be ridden by a person, and it is made possible by the use of a chain and a wheel. The bicycle is made pos",
+          "n_tokens": 80,
+          "repetition_rate": 0.28205128205128205,
+          "distinct_ratio": 0.4625
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"It's not about the money, it's about the people.\"",
+          "n_tokens": 13,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.7692307692307693
+        }
+      ]
+    }
+  },
+  "cf90_90_fp32": {
+    "seed_0": {
+      "pre_retention": 0.8,
+      "post_ft_retention": 0.8,
+      "post_quant_retention": 0.8,
+      "facts_retained_post_ft": 16,
+      "facts_retained_post_quant": 16,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 7.229770183563232,
+      "repetition_rate": 0.33566521198100147,
+      "distinct_ratio": 0.17554122038299255,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health\n2. Increased energy levels\n3. Reduced risk of chronic diseases\n3. Improved mental health\n4. Enhanced cognitive function\n5. Increased self-esteem\n6. Better sleep quali",
+          "n_tokens": 78,
+          "repetition_rate": 0.013157894736842146,
+          "distinct_ratio": 0.5512820512820513
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled ",
+          "n_tokens": 80,
+          "repetition_rate": 0.782051282051282,
+          "distinct_ratio": 0.2125
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do.",
+          "n_tokens": 79,
+          "repetition_rate": 0.8831168831168831,
+          "distinct_ratio": 0.11392405063291139
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.8,
+      "post_ft_retention": 0.8,
+      "post_quant_retention": 0.8,
+      "facts_retained_post_ft": 16,
+      "facts_retained_post_quant": 16,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 7.224597454071045,
+      "repetition_rate": 0.33566521198100147,
+      "distinct_ratio": 0.17554122038299255,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health\n2. Increased energy levels\n3. Reduced risk of chronic diseases\n3. Improved mental health\n4. Enhanced cognitive function\n5. Increased self-esteem\n6. Better sleep quali",
+          "n_tokens": 78,
+          "repetition_rate": 0.013157894736842146,
+          "distinct_ratio": 0.5512820512820513
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled ",
+          "n_tokens": 80,
+          "repetition_rate": 0.782051282051282,
+          "distinct_ratio": 0.2125
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do.",
+          "n_tokens": 79,
+          "repetition_rate": 0.8831168831168831,
+          "distinct_ratio": 0.11392405063291139
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.8,
+      "post_ft_retention": 0.8,
+      "post_quant_retention": 0.8,
+      "facts_retained_post_ft": 16,
+      "facts_retained_post_quant": 16,
+      "total_facts": 20,
+      "quantized": false,
+      "finetuned": true,
+      "conv_ppl": 7.232219696044922,
+      "repetition_rate": 0.33566521198100147,
+      "distinct_ratio": 0.17554122038299255,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health\n2. Increased energy levels\n3. Reduced risk of chronic diseases\n3. Improved mental health\n4. Enhanced cognitive function\n5. Increased self-esteem\n6. Better sleep quali",
+          "n_tokens": 78,
+          "repetition_rate": 0.013157894736842146,
+          "distinct_ratio": 0.5512820512820513
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled ",
+          "n_tokens": 80,
+          "repetition_rate": 0.782051282051282,
+          "distinct_ratio": 0.2125
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do. I'm not sure what to do.",
+          "n_tokens": 79,
+          "repetition_rate": 0.8831168831168831,
+          "distinct_ratio": 0.11392405063291139
+        }
+      ]
+    }
+  },
+  "cf90_90_int8": {
+    "seed_0": {
+      "pre_retention": 0.8,
+      "post_ft_retention": 0.8,
+      "post_quant_retention": 0.75,
+      "facts_retained_post_ft": 16,
+      "facts_retained_post_quant": 15,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.938461303710938,
+      "repetition_rate": 0.2525807525807526,
+      "distinct_ratio": 0.43487341772151905,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "\"The importance of clean water cannot be overstated.\"",
+          "n_tokens": 10,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 1.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health\n2. Increased energy levels\n3. Better sleep quality\n4. Reduced risk of chronic diseases\n5. Enhanced mental clarity and focus\n6. Improved mood and overall well-being\n7.",
+          "n_tokens": 79,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, propelled by the effort of the rider. The bicycle is a two-wheeled vehicle, propelled by the effort of the rider. The bicycle is a two-wheeled vehicle, propelled ",
+          "n_tokens": 80,
+          "repetition_rate": 0.7564102564102564,
+          "distinct_ratio": 0.225
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"It's not about the money, it's about the people.\" \"I'm not sure what you mean, but I think you're right. I think you should be more than just a paycheck.\" \"I'm not sure what you mean, but I think you",
+          "n_tokens": 79,
+          "repetition_rate": 0.5064935064935066,
+          "distinct_ratio": 0.379746835443038
+        }
+      ]
+    },
+    "seed_1": {
+      "pre_retention": 0.8,
+      "post_ft_retention": 0.8,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 16,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.924649238586426,
+      "repetition_rate": 0.2447885447885448,
+      "distinct_ratio": 0.4374050632911392,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "\"The importance of clean water cannot be overstated.\"",
+          "n_tokens": 10,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 1.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health\n2. Increased energy levels\n3. Better sleep quality\n4. Reduced risk of chronic diseases\n5. Enhanced mental clarity and focus\n6. Improved mood and overall well-being\n7.",
+          "n_tokens": 79,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, propelled by the effort of the rider. The bicycle is a two-wheeled vehicle, propelled by the effort of the rider. The bicycle is a two-wheeled vehicle, propelled ",
+          "n_tokens": 80,
+          "repetition_rate": 0.7564102564102564,
+          "distinct_ratio": 0.225
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"It's not about the money, it's about the people.\" \"I'm not sure what you mean, but I think you're right. I think you should be more than just a paycheck. I think you should be more than just a job. I",
+          "n_tokens": 79,
+          "repetition_rate": 0.4675324675324676,
+          "distinct_ratio": 0.3924050632911392
+        }
+      ]
+    },
+    "seed_2": {
+      "pre_retention": 0.8,
+      "post_ft_retention": 0.8,
+      "post_quant_retention": 0.7,
+      "facts_retained_post_ft": 16,
+      "facts_retained_post_quant": 14,
+      "total_facts": 20,
+      "quantized": true,
+      "finetuned": true,
+      "conv_ppl": 8.94174575805664,
+      "repetition_rate": 0.2525807525807526,
+      "distinct_ratio": 0.43487341772151905,
+      "generation_samples": [
+        {
+          "prompt": "Explain why the sky is blue in simple terms:",
+          "generated": "",
+          "n_tokens": 0,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.0
+        },
+        {
+          "prompt": "Write a short paragraph about the importance of clean water:",
+          "generated": "\"The importance of clean water cannot be overstated.\"",
+          "n_tokens": 10,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 1.0
+        },
+        {
+          "prompt": "What are three benefits of regular exercise?",
+          "generated": "1. Improved cardiovascular health\n2. Increased energy levels\n3. Better sleep quality\n4. Reduced risk of chronic diseases\n5. Enhanced mental clarity and focus\n6. Improved mood and overall well-being\n7.",
+          "n_tokens": 79,
+          "repetition_rate": 0.0,
+          "distinct_ratio": 0.569620253164557
+        },
+        {
+          "prompt": "Describe how a bicycle works:",
+          "generated": "The bicycle is a two-wheeled vehicle, propelled by the effort of the rider. The bicycle is a two-wheeled vehicle, propelled by the effort of the rider. The bicycle is a two-wheeled vehicle, propelled ",
+          "n_tokens": 80,
+          "repetition_rate": 0.7564102564102564,
+          "distinct_ratio": 0.225
+        },
+        {
+          "prompt": "Give advice to someone starting their first job:",
+          "generated": "\"It's not about the money, it's about the people.\" \"I'm not sure what you mean, but I think you're right. I think you should be more than just a paycheck.\" \"I'm not sure what you mean, but I think you",
+          "n_tokens": 79,
+          "repetition_rate": 0.5064935064935066,
+          "distinct_ratio": 0.379746835443038
+        }
+      ]
+    }
+  },
+  "summary": {
+    "baseline_fp32": {
+      "post_ft": {
+        "mean": 0.6999999999999998,
+        "std": 1.3597399555105182e-16,
+        "min": 0.7,
+        "max": 0.7,
+        "ci95": 1.5386906095100995e-16,
+        "n": 3,
+        "values": [
+          0.7,
+          0.7,
+          0.7
+        ]
+      },
+      "post_quant": {
+        "mean": 0.6999999999999998,
+        "std": 1.3597399555105182e-16,
+        "min": 0.7,
+        "max": 0.7,
+        "ci95": 1.5386906095100995e-16,
+        "n": 3,
+        "values": [
+          0.7,
+          0.7,
+          0.7
+        ]
+      },
+      "quant_drop": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "conv_ppl": {
+        "mean": 6.787550926208496,
+        "std": 0.0,
+        "min": 6.787550926208496,
+        "max": 6.787550926208496,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          6.787550926208496,
+          6.787550926208496,
+          6.787550926208496
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.05304695304695304,
+        "std": 0.0,
+        "min": 0.05304695304695304,
+        "max": 0.05304695304695304,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.05304695304695304,
+          0.05304695304695304,
+          0.05304695304695304
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.6174525791614399,
+        "std": 0.0,
+        "min": 0.6174525791614399,
+        "max": 0.6174525791614399,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.6174525791614399,
+          0.6174525791614399,
+          0.6174525791614399
+        ]
+      }
+    },
+    "baseline_int8": {
+      "post_ft": {
+        "mean": 0.6999999999999998,
+        "std": 1.3597399555105182e-16,
+        "min": 0.7,
+        "max": 0.7,
+        "ci95": 1.5386906095100995e-16,
+        "n": 3,
+        "values": [
+          0.7,
+          0.7,
+          0.7
+        ]
+      },
+      "post_quant": {
+        "mean": 0.6,
+        "std": 0.0,
+        "min": 0.6,
+        "max": 0.6,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.6,
+          0.6,
+          0.6
+        ]
+      },
+      "quant_drop": {
+        "mean": -0.09999999999999998,
+        "std": 0.0,
+        "min": -0.09999999999999998,
+        "max": -0.09999999999999998,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          -0.09999999999999998,
+          -0.09999999999999998,
+          -0.09999999999999998
+        ]
+      },
+      "conv_ppl": {
+        "mean": 8.036471366882324,
+        "std": 0.0,
+        "min": 8.036471366882324,
+        "max": 8.036471366882324,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          8.036471366882324,
+          8.036471366882324,
+          8.036471366882324
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.06423576423576423,
+        "std": 0.0,
+        "min": 0.06423576423576423,
+        "max": 0.06423576423576423,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.06423576423576423,
+          0.06423576423576423,
+          0.06423576423576423
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.5884177215189874,
+        "std": 0.0,
+        "min": 0.5884177215189874,
+        "max": 0.5884177215189874,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.5884177215189874,
+          0.5884177215189874,
+          0.5884177215189874
+        ]
+      }
+    },
+    "no_protection_fp32": {
+      "post_ft": {
+        "mean": 0.7666666666666666,
+        "std": 0.028867513459481315,
+        "min": 0.75,
+        "max": 0.8,
+        "ci95": 0.0326666666666667,
+        "n": 3,
+        "values": [
+          0.8,
+          0.75,
+          0.75
+        ]
+      },
+      "post_quant": {
+        "mean": 0.7666666666666666,
+        "std": 0.028867513459481315,
+        "min": 0.75,
+        "max": 0.8,
+        "ci95": 0.0326666666666667,
+        "n": 3,
+        "values": [
+          0.8,
+          0.75,
+          0.75
+        ]
+      },
+      "quant_drop": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "conv_ppl": {
+        "mean": 6.91032059987386,
+        "std": 0.08818138250924948,
+        "min": 6.808565139770508,
+        "max": 6.964411735534668,
+        "ci95": 0.09978662806128795,
+        "n": 3,
+        "values": [
+          6.957984924316406,
+          6.808565139770508,
+          6.964411735534668
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.053413253413253405,
+        "std": 0.008247860988423221,
+        "min": 0.043889443889443894,
+        "max": 0.05817515817515817,
+        "ci95": 0.009333333333333329,
+        "n": 3,
+        "values": [
+          0.043889443889443894,
+          0.05817515817515817,
+          0.05817515817515817
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.59123821623976,
+        "std": 0.07335411175085792,
+        "min": 0.5066882782751879,
+        "max": 0.6379071246159854,
+        "ci95": 0.08300799168442648,
+        "n": 3,
+        "values": [
+          0.5066882782751879,
+          0.6291192458281066,
+          0.6379071246159854
+        ]
+      }
+    },
+    "no_protection_int8": {
+      "post_ft": {
+        "mean": 0.6166666666666667,
+        "std": 0.16072751268321595,
+        "min": 0.5,
+        "max": 0.8,
+        "ci95": 0.18188030251911408,
+        "n": 3,
+        "values": [
+          0.8,
+          0.55,
+          0.5
+        ]
+      },
+      "post_quant": {
+        "mean": 0.5833333333333334,
+        "std": 0.23094010767585027,
+        "min": 0.45,
+        "max": 0.85,
+        "ci95": 0.2613333333333333,
+        "n": 3,
+        "values": [
+          0.85,
+          0.45,
+          0.45
+        ]
+      },
+      "quant_drop": {
+        "mean": -0.03333333333333336,
+        "std": 0.0763762615825973,
+        "min": -0.10000000000000003,
+        "max": 0.04999999999999993,
+        "ci95": 0.08642787616144326,
+        "n": 3,
+        "values": [
+          0.04999999999999993,
+          -0.10000000000000003,
+          -0.04999999999999999
+        ]
+      },
+      "conv_ppl": {
+        "mean": 8.052357991536459,
+        "std": 0.08705100019684854,
+        "min": 7.95676326751709,
+        "max": 8.12706470489502,
+        "ci95": 0.09850748005787828,
+        "n": 3,
+        "values": [
+          7.95676326751709,
+          8.073246002197266,
+          8.12706470489502
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.05844599844599844,
+        "std": 0.02974661264047122,
+        "min": 0.025740925740925746,
+        "max": 0.08388944388944389,
+        "ci95": 0.03366146103829294,
+        "n": 3,
+        "values": [
+          0.025740925740925746,
+          0.08388944388944389,
+          0.0657076257076257
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.602950418948993,
+        "std": 0.05514770583241339,
+        "min": 0.5493476501340127,
+        "max": 0.6595230451865485,
+        "ci95": 0.062405503902766966,
+        "n": 3,
+        "values": [
+          0.6595230451865485,
+          0.5493476501340127,
+          0.5999805615264178
+        ]
+      }
+    },
+    "freeze75_fp32": {
+      "post_ft": {
+        "mean": 0.6666666666666666,
+        "std": 0.02886751345948125,
+        "min": 0.65,
+        "max": 0.7,
+        "ci95": 0.03266666666666662,
+        "n": 3,
+        "values": [
+          0.65,
+          0.65,
+          0.7
+        ]
+      },
+      "post_quant": {
+        "mean": 0.6666666666666666,
+        "std": 0.02886751345948125,
+        "min": 0.65,
+        "max": 0.7,
+        "ci95": 0.03266666666666662,
+        "n": 3,
+        "values": [
+          0.65,
+          0.65,
+          0.7
+        ]
+      },
+      "quant_drop": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "conv_ppl": {
+        "mean": 6.894554773966472,
+        "std": 0.0024400730391974084,
+        "min": 6.89193058013916,
+        "max": 6.896755218505859,
+        "ci95": 0.0027612025790050253,
+        "n": 3,
+        "values": [
+          6.8949785232543945,
+          6.896755218505859,
+          6.89193058013916
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.04962814962814963,
+        "std": 0.0014803853056144197,
+        "min": 0.04791874791874793,
+        "max": 0.050482850482850485,
+        "ci95": 0.001675213675213669,
+        "n": 3,
+        "values": [
+          0.050482850482850485,
+          0.04791874791874793,
+          0.050482850482850485
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.6291192458281066,
+        "std": 0.004330127018922229,
+        "min": 0.6266192458281066,
+        "max": 0.6341192458281066,
+        "ci95": 0.00490000000000004,
+        "n": 3,
+        "values": [
+          0.6266192458281066,
+          0.6341192458281066,
+          0.6266192458281066
+        ]
+      }
+    },
+    "freeze75_int8": {
+      "post_ft": {
+        "mean": 0.6333333333333333,
+        "std": 0.028867513459481315,
+        "min": 0.6,
+        "max": 0.65,
+        "ci95": 0.0326666666666667,
+        "n": 3,
+        "values": [
+          0.65,
+          0.6,
+          0.65
+        ]
+      },
+      "post_quant": {
+        "mean": 0.6,
+        "std": 0.04999999999999999,
+        "min": 0.55,
+        "max": 0.65,
+        "ci95": 0.056580326380583315,
+        "n": 3,
+        "values": [
+          0.6,
+          0.65,
+          0.55
+        ]
+      },
+      "quant_drop": {
+        "mean": -0.033333333333333326,
+        "std": 0.07637626158259735,
+        "min": -0.09999999999999998,
+        "max": 0.050000000000000044,
+        "ci95": 0.0864278761614433,
+        "n": 3,
+        "values": [
+          -0.050000000000000044,
+          0.050000000000000044,
+          -0.09999999999999998
+        ]
+      },
+      "conv_ppl": {
+        "mean": 8.155759493509928,
+        "std": 0.009105236804732332,
+        "min": 8.14628791809082,
+        "max": 8.164447784423828,
+        "ci95": 0.010303545403685102,
+        "n": 3,
+        "values": [
+          8.164447784423828,
+          8.156542778015137,
+          8.14628791809082
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.06000666000666,
+        "std": 0.017129396005175473,
+        "min": 0.041158841158841164,
+        "max": 0.07462537462537462,
+        "ci95": 0.01938373633350177,
+        "n": 3,
+        "values": [
+          0.06423576423576423,
+          0.041158841158841164,
+          0.07462537462537462
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.5753701155751239,
+        "std": 0.008824821635595299,
+        "min": 0.5669734911025499,
+        "max": 0.5845684278114108,
+        "ci95": 0.009986225767848304,
+        "n": 3,
+        "values": [
+          0.5745684278114107,
+          0.5845684278114108,
+          0.5669734911025499
+        ]
+      }
+    },
+    "freeze90_fp32": {
+      "post_ft": {
+        "mean": 0.65,
+        "std": 0.0,
+        "min": 0.65,
+        "max": 0.65,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.65,
+          0.65,
+          0.65
+        ]
+      },
+      "post_quant": {
+        "mean": 0.65,
+        "std": 0.0,
+        "min": 0.65,
+        "max": 0.65,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.65,
+          0.65,
+          0.65
+        ]
+      },
+      "quant_drop": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "conv_ppl": {
+        "mean": 6.855844815572103,
+        "std": 0.0032769388271398337,
+        "min": 6.853285312652588,
+        "max": 6.8595380783081055,
+        "ci95": 0.0037082053673755545,
+        "n": 3,
+        "values": [
+          6.854711055755615,
+          6.8595380783081055,
+          6.853285312652588
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.04962814962814963,
+        "std": 0.0014803853056144197,
+        "min": 0.04791874791874793,
+        "max": 0.050482850482850485,
+        "ci95": 0.001675213675213669,
+        "n": 3,
+        "values": [
+          0.04791874791874793,
+          0.050482850482850485,
+          0.050482850482850485
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.62995257916144,
+        "std": 0.0038188130791298944,
+        "min": 0.6266192458281066,
+        "max": 0.6341192458281066,
+        "ci95": 0.004321393808072196,
+        "n": 3,
+        "values": [
+          0.6341192458281066,
+          0.6266192458281066,
+          0.6291192458281066
+        ]
+      }
+    },
+    "freeze90_int8": {
+      "post_ft": {
+        "mean": 0.65,
+        "std": 0.0,
+        "min": 0.65,
+        "max": 0.65,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.65,
+          0.65,
+          0.65
+        ]
+      },
+      "post_quant": {
+        "mean": 0.5833333333333334,
+        "std": 0.05773502691896256,
+        "min": 0.55,
+        "max": 0.65,
+        "ci95": 0.06533333333333331,
+        "n": 3,
+        "values": [
+          0.55,
+          0.65,
+          0.55
+        ]
+      },
+      "quant_drop": {
+        "mean": -0.06666666666666665,
+        "std": 0.05773502691896256,
+        "min": -0.09999999999999998,
+        "max": 0.0,
+        "ci95": 0.06533333333333331,
+        "n": 3,
+        "values": [
+          -0.09999999999999998,
+          0.0,
+          -0.09999999999999998
+        ]
+      },
+      "conv_ppl": {
+        "mean": 8.171480814615885,
+        "std": 0.007554890098734673,
+        "min": 8.1668701171875,
+        "max": 8.18019962310791,
+        "ci95": 0.008549162951116905,
+        "n": 3,
+        "values": [
+          8.18019962310791,
+          8.1668701171875,
+          8.167372703552246
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.055722055722055734,
+        "std": 0.012043675729199323,
+        "min": 0.04632034632034634,
+        "max": 0.0692973692973693,
+        "ci95": 0.01362870207160015,
+        "n": 3,
+        "values": [
+          0.0692973692973693,
+          0.05154845154845156,
+          0.04632034632034634
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.6058529452874527,
+        "std": 0.01292906974677886,
+        "min": 0.5983544303797468,
+        "max": 0.6207820976491863,
+        "ci95": 0.014630619721401474,
+        "n": 3,
+        "values": [
+          0.6207820976491863,
+          0.5983544303797468,
+          0.598422307833425
+        ]
+      }
+    },
+    "cf90_75_fp32": {
+      "post_ft": {
+        "mean": 0.6999999999999998,
+        "std": 1.3597399555105182e-16,
+        "min": 0.7,
+        "max": 0.7,
+        "ci95": 1.5386906095100995e-16,
+        "n": 3,
+        "values": [
+          0.7,
+          0.7,
+          0.7
+        ]
+      },
+      "post_quant": {
+        "mean": 0.6999999999999998,
+        "std": 1.3597399555105182e-16,
+        "min": 0.7,
+        "max": 0.7,
+        "ci95": 1.5386906095100995e-16,
+        "n": 3,
+        "values": [
+          0.7,
+          0.7,
+          0.7
+        ]
+      },
+      "quant_drop": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "conv_ppl": {
+        "mean": 7.103039900461833,
+        "std": 0.003121200053549969,
+        "min": 7.099738597869873,
+        "max": 7.105942726135254,
+        "ci95": 0.003531970354579028,
+        "n": 3,
+        "values": [
+          7.099738597869873,
+          7.103438377380371,
+          7.105942726135254
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.33303363303363304,
+        "std": 0.0,
+        "min": 0.33303363303363304,
+        "max": 0.33303363303363304,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.33303363303363304,
+          0.33303363303363304,
+          0.33303363303363304
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.23302674561045325,
+        "std": 0.0,
+        "min": 0.23302674561045325,
+        "max": 0.23302674561045325,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.23302674561045325,
+          0.23302674561045325,
+          0.23302674561045325
+        ]
+      }
+    },
+    "cf90_75_int8": {
+      "post_ft": {
+        "mean": 0.6999999999999998,
+        "std": 1.3597399555105182e-16,
+        "min": 0.7,
+        "max": 0.7,
+        "ci95": 1.5386906095100995e-16,
+        "n": 3,
+        "values": [
+          0.7,
+          0.7,
+          0.7
+        ]
+      },
+      "post_quant": {
+        "mean": 0.6833333333333332,
+        "std": 0.02886751345948125,
+        "min": 0.65,
+        "max": 0.7,
+        "ci95": 0.03266666666666662,
+        "n": 3,
+        "values": [
+          0.7,
+          0.7,
+          0.65
+        ]
+      },
+      "quant_drop": {
+        "mean": -0.016666666666666646,
+        "std": 0.02886751345948125,
+        "min": -0.04999999999999993,
+        "max": 0.0,
+        "ci95": 0.03266666666666662,
+        "n": 3,
+        "values": [
+          0.0,
+          0.0,
+          -0.04999999999999993
+        ]
+      },
+      "conv_ppl": {
+        "mean": 8.657751401265463,
+        "std": 0.022835869157107697,
+        "min": 8.634032249450684,
+        "max": 8.679587364196777,
+        "ci95": 0.025841218601868995,
+        "n": 3,
+        "values": [
+          8.634032249450684,
+          8.679587364196777,
+          8.659634590148926
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.08029085342518179,
+        "std": 0.0,
+        "min": 0.08029085342518179,
+        "max": 0.08029085342518179,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.08029085342518179,
+          0.08029085342518179,
+          0.08029085342518179
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.3767809364548495,
+        "std": 0.0,
+        "min": 0.3767809364548495,
+        "max": 0.3767809364548495,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.3767809364548495,
+          0.3767809364548495,
+          0.3767809364548495
+        ]
+      }
+    },
+    "cf90_90_fp32": {
+      "post_ft": {
+        "mean": 0.8000000000000002,
+        "std": 1.3597399555105182e-16,
+        "min": 0.8,
+        "max": 0.8,
+        "ci95": 1.5386906095100995e-16,
+        "n": 3,
+        "values": [
+          0.8,
+          0.8,
+          0.8
+        ]
+      },
+      "post_quant": {
+        "mean": 0.8000000000000002,
+        "std": 1.3597399555105182e-16,
+        "min": 0.8,
+        "max": 0.8,
+        "ci95": 1.5386906095100995e-16,
+        "n": 3,
+        "values": [
+          0.8,
+          0.8,
+          0.8
+        ]
+      },
+      "quant_drop": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "conv_ppl": {
+        "mean": 7.228862444559733,
+        "std": 0.003891353973996506,
+        "min": 7.224597454071045,
+        "max": 7.232219696044922,
+        "ci95": 0.004403481558222045,
+        "n": 3,
+        "values": [
+          7.229770183563232,
+          7.224597454071045,
+          7.232219696044922
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.33566521198100147,
+        "std": 0.0,
+        "min": 0.33566521198100147,
+        "max": 0.33566521198100147,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.33566521198100147,
+          0.33566521198100147,
+          0.33566521198100147
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.17554122038299255,
+        "std": 0.0,
+        "min": 0.17554122038299255,
+        "max": 0.17554122038299255,
+        "ci95": 0.0,
+        "n": 3,
+        "values": [
+          0.17554122038299255,
+          0.17554122038299255,
+          0.17554122038299255
+        ]
+      }
+    },
+    "cf90_90_int8": {
+      "post_ft": {
+        "mean": 0.8000000000000002,
+        "std": 1.3597399555105182e-16,
+        "min": 0.8,
+        "max": 0.8,
+        "ci95": 1.5386906095100995e-16,
+        "n": 3,
+        "values": [
+          0.8,
+          0.8,
+          0.8
+        ]
+      },
+      "post_quant": {
+        "mean": 0.7166666666666667,
+        "std": 0.028867513459481315,
+        "min": 0.7,
+        "max": 0.75,
+        "ci95": 0.0326666666666667,
+        "n": 3,
+        "values": [
+          0.75,
+          0.7,
+          0.7
+        ]
+      },
+      "quant_drop": {
+        "mean": -0.08333333333333341,
+        "std": 0.028867513459481315,
+        "min": -0.10000000000000009,
+        "max": -0.050000000000000044,
+        "ci95": 0.0326666666666667,
+        "n": 3,
+        "values": [
+          -0.050000000000000044,
+          -0.10000000000000009,
+          -0.10000000000000009
+        ]
+      },
+      "conv_ppl": {
+        "mean": 8.934952100118002,
+        "std": 0.0090724102029927,
+        "min": 8.924649238586426,
+        "max": 8.94174575805664,
+        "ci95": 0.010266398606877223,
+        "n": 3,
+        "values": [
+          8.938461303710938,
+          8.924649238586426,
+          8.94174575805664
+        ]
+      },
+      "repetition_rate": {
+        "mean": 0.24998334998335,
+        "std": 0.004498833266412654,
+        "min": 0.2447885447885448,
+        "max": 0.2525807525807526,
+        "ci95": 0.005090909090909075,
+        "n": 3,
+        "values": [
+          0.2525807525807526,
+          0.2447885447885448,
+          0.2525807525807526
+        ]
+      },
+      "distinct_ratio": {
+        "mean": 0.4357172995780591,
+        "std": 0.0014616462511129202,
+        "min": 0.43487341772151905,
+        "max": 0.4374050632911392,
+        "ci95": 0.0016540084388185017,
+        "n": 3,
+        "values": [
+          0.43487341772151905,
+          0.4374050632911392,
+          0.43487341772151905
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "elapsed_seconds": 1075.6843400001526,
+    "model": "Qwen/Qwen2.5-0.5B",
+    "device": "cpu",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "n_conditions": 12
+  }
+}
