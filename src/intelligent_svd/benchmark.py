@@ -7,7 +7,9 @@ preservation during fine-tuning.
 """
 
 import json
+import os
 import subprocess
+import sys
 import torch
 import numpy as np
 from pathlib import Path
@@ -39,8 +41,13 @@ def run_lm_eval(
     Returns:
         Dict of {task_metric: score}
     """
+    # Always use an output_dir so we can read JSON results reliably
+    if output_dir is None:
+        output_dir = f"/tmp/lm_eval_{Path(model_path).name}"
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+
     cmd = [
-        "lm-eval",
+        sys.executable, "-m", "lm_eval",
         "--model", "hf",
         "--model_args", f"pretrained={model_path},dtype=float32",
         "--tasks", tasks,
@@ -48,50 +55,48 @@ def run_lm_eval(
         "--limit", str(limit),
         "--device", device,
         "--trust_remote_code",
+        "--output_path", output_dir,
     ]
 
-    if output_dir:
-        Path(output_dir).mkdir(parents=True, exist_ok=True)
-        cmd.extend(["--output_path", output_dir])
-
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=7200)
+    # Pass current environment (including HF_HOME) to subprocess
+    env = os.environ.copy()
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=7200, env=env)
 
     scores = {}
 
-    # Parse table output from stdout
-    for line in result.stdout.split('\n'):
-        if '|' in line and ('acc' in line or 'mc2' in line):
-            parts = [p.strip() for p in line.split('|')]
-            if len(parts) >= 7:
-                try:
-                    task = parts[1]
-                    metric = parts[2] if len(parts) > 5 else ""
-                    # Try different column positions for the value
-                    for col in [3, 4, 5, 6, 7]:
-                        if col < len(parts):
-                            try:
-                                value = float(parts[col])
-                                key = f"{task}_{metric}" if metric else task
-                                scores[key] = value
-                                break
-                            except (ValueError, IndexError):
-                                continue
-                except Exception:
-                    pass
+    # Primary: read from output JSON (most reliable)
+    for json_file in sorted(Path(output_dir).rglob("results*.json")):
+        try:
+            with open(json_file) as f:
+                data = json.load(f)
+            if "results" in data:
+                for task, metrics in data["results"].items():
+                    for metric, value in metrics.items():
+                        if isinstance(value, (int, float)) and not metric.startswith("alias"):
+                            scores[f"{task}_{metric}"] = value
+        except Exception:
+            pass
 
-    # Also try reading from output JSON
-    if output_dir:
-        for json_file in Path(output_dir).rglob("results*.json"):
-            try:
-                with open(json_file) as f:
-                    data = json.load(f)
-                if "results" in data:
-                    for task, metrics in data["results"].items():
-                        for metric, value in metrics.items():
-                            if isinstance(value, (int, float)):
-                                scores[f"{task}_{metric}"] = value
-            except Exception:
-                pass
+    # Fallback: parse table output from stdout
+    if not scores:
+        for line in result.stdout.split('\n'):
+            if '|' in line:
+                parts = [p.strip() for p in line.split('|')]
+                # lm-eval table: |task|n-shot|metric|filter|value|stderr|
+                if len(parts) >= 7:
+                    try:
+                        task = parts[1]
+                        metric = parts[3]
+                        value_str = parts[5]
+                        if task and metric and value_str:
+                            value = float(value_str)
+                            scores[f"{task}_{metric}"] = value
+                    except (ValueError, IndexError):
+                        continue
+
+    # If still no scores, log stderr for debugging
+    if not scores and result.returncode != 0:
+        print(f"  lm-eval failed (exit {result.returncode}): {result.stderr[-500:]}")
 
     return scores
 
