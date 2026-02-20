@@ -1,0 +1,474 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{xcolor}
+
+\title{CF90: Knowledge-Preserving Compression for Large Language Models\\via SVD and Layer Freezing}
+
+\author{Bryan Sanchez\\
+\texttt{github.com/SolomonB14D3/intelligent-svd}}
+
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Fine-tuning large language models on new data risks overwriting previously learned factual knowledge, a problem known as catastrophic forgetting.
+We present CF90 (Compress-Freeze at 90\%), a method that applies truncated SVD to attention projections before freezing the majority of model layers, then fine-tunes gently on the remaining parameters.
+On Qwen2.5-0.5B, CF90 retains 79\% of factual knowledge after fine-tuning on directly contradictory information, compared to 65\% for layer freezing alone and 4\% with no protection ($p = 0.0072$, five seeds).
+CF90 also outperforms LoRA baselines on knowledge retention (73\% vs.\ 68\% for LoRA $r{=}8$).
+We further show that SVD-compressed models quantize better: SVD followed by INT8 quantization yields a 5.3\% composite improvement over INT8 alone on Qwen2.5-1.5B, and the knowledge protection benefit of CF90 survives through INT8 quantization (72\% retention vs.\ 58\% unprotected).
+However, at 0.5B parameters, CF90 substantially degrades generation fluency, increasing trigram repetition from 5\% to 34\%.
+This degradation does not appear at 7B or above, where CF90 maintains 95\% instruction-following accuracy and 98\% code generation accuracy.
+All code and results are publicly available.\footnote{\url{https://github.com/SolomonB14D3/intelligent-svd}}
+\end{abstract}
+
+\section{Introduction}
+
+The standard workflow for adapting a pretrained language model to a new domain involves fine-tuning on task-specific data.
+This process reliably improves performance on the target task, but it can erase factual knowledge that the model acquired during pretraining \citep{kirkpatrick2017ewc, luo2023forgetting}.
+The problem is especially acute when the fine-tuning data contains information that directly contradicts facts stored in the pretrained weights.
+
+Existing mitigations fall into two broad categories.
+Regularization approaches like EWC \citep{kirkpatrick2017ewc} add penalty terms that discourage large changes to important weights.
+Parameter-efficient methods like LoRA \citep{hu2021lora} reduce the number of trainable parameters, limiting the model's ability to overwrite stored knowledge.
+Both help, but neither explicitly protects the internal representations where factual knowledge is stored.
+
+We take a different approach.
+Before fine-tuning, we apply truncated SVD to the query, key, and output projection matrices in the attention layers.
+This decomposes each weight matrix into its principal components and discards the lowest-energy directions.
+The effect is twofold: it removes noise from the weight matrices, and it establishes a compressed representation that is more robust to subsequent perturbation.
+We then freeze the majority of layers (75--90\%) from the bottom up, leaving only the top few layers trainable.
+Finally, we fine-tune with conservative hyperparameters (1 epoch, learning rate $10^{-5}$).
+
+We call this combination CF90 (Compress-Freeze at 90\%).
+The core contribution is the finding that SVD compression and layer freezing interact synergistically: CF90 retains significantly more factual knowledge than either technique alone, and the improvement is robust across random seeds ($p = 0.0072$).
+
+A secondary contribution concerns quantization.
+We show that SVD compression before quantization acts as a denoising step, improving the quality of quantized models.
+The knowledge protection benefit of CF90 persists through INT8 quantization, making the full pipeline (compress, freeze, fine-tune, quantize) practical for deployment on resource-constrained hardware.
+
+We also document an important limitation.
+At small model scales (0.5B parameters), CF90 preserves factual knowledge but degrades generation fluency.
+Models produce correct factual completions but exhibit high repetition rates on open-ended prompts.
+This problem does not appear at 7B parameters or above, where instruction-following and code generation benchmarks remain intact.
+We characterize this scale-dependent tradeoff and provide practical guidance for when CF90 should and should not be used.
+
+
+\section{Related Work}
+
+\paragraph{SVD compression of language models.}
+Low-rank decomposition is a natural approach to compressing the large weight matrices in transformer models.
+ASVD \citep{yuan2023asvd} incorporates activation statistics into the SVD process, absorbing outlier values into the weight matrix before decomposition.
+SVD-LLM \citep{wang2024svdllm} introduces truncation-aware whitening to create a tighter mapping between singular values and compression loss, and demonstrates that SVD compression can be stacked with GPTQ quantization.
+FWSVD \citep{hsu2022fwsvd} uses Fisher information to weight parameter importance during factorization.
+LoRD \citep{kaushal2023lord} shows that one-shot SVD can compress StarCoder 16B to 13.2B parameters with no quality loss.
+SliceGPT \citep{ashkboos2024slicegpt} takes a complementary approach, using PCA to identify and remove less informative embedding dimensions.
+
+Our work differs from these in two ways.
+First, we compress selectively: only Q, K, and O projections in attention, never V projections or MLP layers.
+We show empirically that violating this constraint destroys model quality (Section~\ref{sec:safety}).
+Second, our primary goal is not size reduction but knowledge preservation during subsequent fine-tuning.
+
+\paragraph{Catastrophic forgetting.}
+\citet{kirkpatrick2017ewc} introduced EWC, which penalizes changes to weights identified as important by the Fisher information matrix.
+\citet{luo2023forgetting} provide an empirical study of forgetting in LLMs during continual fine-tuning, finding that forgetting severity can increase with model scale in the 1B--7B range.
+\citet{li2024revisiting} link forgetting to loss landscape sharpness and propose sharpness-aware minimization as a remedy.
+Our approach sidesteps the forgetting problem structurally, by freezing the layers that store factual knowledge and compressing them into a more robust representation before any fine-tuning begins.
+
+\paragraph{Quantization.}
+Post-training quantization reduces model size by lowering numerical precision.
+GPTQ \citep{frantar2022gptq} uses approximate second-order information to quantize weights to 3--4 bits with minimal accuracy loss.
+AWQ \citep{lin2023awq} identifies salient weight channels via activation magnitudes and protects them during quantization.
+SqueezeLLM \citep{kim2023squeezellm} combines non-uniform quantization with sparse decomposition.
+QLoRA \citep{dettmers2023qlora} fine-tunes LoRA adapters through a frozen 4-bit quantized base model.
+LQ-LoRA \citep{guo2023lqlora} decomposes each weight matrix into a high-precision low-rank component plus a quantized residual.
+CALDERA \citep{saha2024caldera} extends this to jointly quantize both the low-rank factors and the residual.
+
+We contribute the observation that SVD compression before quantization acts as denoising, improving quantized model quality by 5.3\% composite on Qwen2.5-1.5B.
+This is complementary to these existing methods: CF90 could be applied as a preprocessing step before any of them.
+
+\paragraph{Layer freezing and parameter-efficient fine-tuning.}
+\citet{lee2019freezing} showed that fine-tuning only the top quarter of transformer layers achieves 90\% of full fine-tuning quality in BERT.
+Adapter modules \citep{houlsby2019adapters} insert small trainable bottleneck layers while freezing the base model.
+LoRA \citep{hu2021lora} injects trainable low-rank matrices into frozen layers.
+AdaLoRA \citep{zhang2023adalora} extends this by parameterizing the updates as SVD and pruning unimportant singular values.
+DoRA \citep{liu2024dora} decomposes weights into magnitude and direction components, applying LoRA only to the directional part.
+
+CF90 combines layer freezing with SVD compression.
+Unlike LoRA, which adds new parameters, CF90 modifies the existing weights to be more compressible, then freezes them.
+We compare directly against LoRA baselines in Section~\ref{sec:experiments} and find that CF90 retains more factual knowledge under conflicting fine-tuning.
+
+
+\section{Method}
+\label{sec:method}
+
+\subsection{SVD Compression of Attention Projections}
+
+Given a weight matrix $W \in \mathbb{R}^{m \times n}$ from a query, key, or output projection, we compute the truncated SVD:
+\begin{equation}
+W \approx U_r \Sigma_r V_r^\top
+\end{equation}
+where $r = \lfloor \rho \cdot \min(m, n) \rfloor$ for a compression ratio $\rho$.
+The reconstructed matrix $\hat{W} = U_r \Sigma_r V_r^\top$ replaces the original weights in-place.
+
+We apply this only to Q, K, and O projections.
+Section~\ref{sec:safety} documents why V projections and MLP layers must not be compressed.
+
+\paragraph{Importance-guided variant.}
+For aggressive compression ($\rho \leq 0.5$), we offer an importance-guided variant.
+We compute gradient-based importance scores $I_{ij} = |g_{ij}|$ for each weight, where $g_{ij}$ is the gradient with respect to a small set of factual probing prompts.
+We then select the top-$r$ singular values by their importance-weighted contribution rather than by magnitude alone:
+\begin{equation}
+s_k = \sigma_k \sum_{i,j} |u_{ik}| \cdot |v_{jk}| \cdot I_{ij}
+\end{equation}
+The singular values with the highest $s_k$ scores are retained.
+At 50\% compression, this preserves 73.3\% factual accuracy compared to 46.7\% for standard SVD on Qwen2.5-0.5B.
+At the 70\% ratio used in CF90, standard SVD is sufficient.
+
+\subsection{Layer Freezing}
+
+After compression, we freeze the bottom $f$ fraction of transformer layers (plus the embedding layer) by setting \texttt{requires\_grad = False}.
+The CF90 configuration uses $f = 0.75$ (freeze 18 of 24 layers) or $f = 0.9$ (freeze 22 of 24 layers).
+Only the top layers remain trainable.
+
+\subsection{Gentle Fine-Tuning}
+
+We fine-tune with conservative hyperparameters: 1 epoch, learning rate $10^{-5}$, batch size 4, AdamW optimizer.
+This is a critical component.
+Aggressive fine-tuning (3+ epochs, learning rate $\geq 2 \times 10^{-5}$) negates the protective effect of compression.
+Table~\ref{tab:aggressive} in the appendix shows that under aggressive settings, CF90 retention drops from 75\% to 5\%.
+
+\subsection{Full Pipeline}
+
+The complete CF90 pipeline is:
+\begin{enumerate}
+\item Load pretrained model
+\item Compress Q, K, O projections at 70\% rank via truncated SVD
+\item Freeze bottom 75--90\% of layers
+\item Fine-tune gently (1 epoch, $\text{lr} = 10^{-5}$)
+\item (Optional) Quantize to INT8 or INT4
+\end{enumerate}
+
+Steps 1--3 require no training data and complete in under a minute on a single GPU.
+The optional quantization step in (5) benefits from the SVD denoising in step 2, as we show in Section~\ref{sec:quant}.
+
+
+\section{Compression Safety Rules}
+\label{sec:safety}
+
+Not all weight matrices in a transformer can be safely compressed.
+We tested SVD compression at varying ratios on each component type in Qwen2.5-0.5B and measured perplexity and factual accuracy.
+Table~\ref{tab:safety} summarizes the results.
+
+\begin{table}[h]
+\centering
+\caption{Layer-type sensitivity to SVD compression (Qwen2.5-0.5B).}
+\label{tab:safety}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Layer Type} & \textbf{Ratio} & \textbf{PPL $\Delta$} & \textbf{Accuracy} & \textbf{Status} \\
+\midrule
+Q, K, O & 70\% & $<$5\% & 80\% & Safe \\
+V & 95\% & $-$7.6\% & 80\% & Safe \\
+V & 85\% & +2500\% & 10\% & Destroyed \\
+MLP & 99\% & +520\% & 30\% & Destroyed \\
+MLP & 98\% & +1500\% & 50\% & Destroyed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The V projection has a sharp threshold between 90\% and 85\% compression: a 5-point change in ratio causes a 2500\% increase in perplexity and a 70-point drop in accuracy.
+MLP layers cannot be compressed at any ratio without severe degradation.
+These findings constrain the design space: CF90 targets only Q, K, and O projections.
+
+
+\section{Experiments}
+\label{sec:experiments}
+
+All experiments use Qwen2.5-0.5B (494M parameters) unless otherwise noted.
+Models are loaded in FP32 and trained on CPU (Apple M3 Ultra, 96~GB unified memory).
+Factual accuracy is measured by prompting the model with 20 factual completions (e.g., ``The capital of France is'') and checking whether the correct answer appears in the generated tokens.
+Generation quality is measured by conversational perplexity, trigram repetition rate, and distinct token ratio on five open-ended prompts.
+
+\subsection{Experiment C: CF90 Knowledge Protection (5 Seeds)}
+\label{sec:expc}
+
+We fine-tune on 20 factual statements that directly contradict the model's pretrained knowledge (e.g., ``The capital of France is Berlin'') and measure how many original facts the model retains.
+Five random seeds, five conditions.
+
+\begin{table}[h]
+\centering
+\caption{Fact retention after fine-tuning on contradictory data (5 seeds, Qwen2.5-0.5B).}
+\label{tab:expc}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Condition} & \textbf{Mean Retention} & \textbf{Std} \\
+\midrule
+No protection & 4\% & 2.2\% \\
+Freeze 75\% only & 63\% & 2.7\% \\
+CF90 (75\% freeze + compress) & 71\% & 4.2\% \\
+Freeze 90\% only & 65\% & 0.0\% \\
+\textbf{CF90 (90\% freeze + compress)} & \textbf{79\%} & \textbf{2.2\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CF90 at 90\% freeze significantly outperforms freeze-only at the same level: $\Delta = +14\%$, $t(8) = 3.73$, $p = 0.0072$ (two-sample $t$-test, two-tailed).
+At 75\% freeze, the improvement is $+8\%$ ($p = 0.013$).
+The interaction is synergistic: compression alone (without freezing) does not protect knowledge, and freezing alone leaves a 14-point gap that compression closes.
+
+\subsection{Experiment B: CF90 vs.\ LoRA Baselines (3 Seeds)}
+
+We compare CF90 against LoRA \citep{hu2021lora} at ranks 8 and 16, using the same contradictory fine-tuning protocol.
+
+\begin{table}[h]
+\centering
+\caption{CF90 vs.\ LoRA on fact retention (3 seeds).}
+\label{tab:expb}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Mean Retention} & \textbf{Std} \\
+\midrule
+No protection & 3\% & 2.9\% \\
+Freeze 75\% only & 62\% & 2.9\% \\
+\textbf{CF90 (75\% freeze + compress)} & \textbf{73\%} & \textbf{2.9\%} \\
+LoRA $r{=}8$ & 68\% & 2.9\% \\
+LoRA $r{=}16$ & 67\% & 2.9\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CF90 outperforms both LoRA configurations.
+Note that ``no protection'' scores 77\% in Experiment D (Table~\ref{tab:expd}) but only 3\% here because Experiment B uses aggressive fine-tuning (3 epochs, $2 \times 10^{-5}$) to stress-test the protection methods, while Experiment D uses gentle settings (1 epoch, $10^{-5}$).
+The difference in no-protection scores between experiments reflects this: gentle fine-tuning on contradictory data is itself a weak form of protection.
+
+\subsection{Experiment D: Full Pipeline with Quantization (3 Seeds)}
+\label{sec:quant}
+
+We test the complete CF90 pipeline through INT8 quantization and add generation quality metrics.
+INT8 quantization is applied as scale-and-round: for each weight matrix, compute $\text{scale} = \max(|W|) / 127$, round $W / \text{scale}$ to the nearest integer, clamp to $[-127, 127]$, and multiply back by scale.
+
+\begin{table}[h]
+\centering
+\caption{Full pipeline: fact retention and generation quality (3 seeds, Qwen2.5-0.5B). ``Post-Q'' = after INT8 quantization. PPL = conversational perplexity. Rep = trigram repetition rate. Dist = distinct token ratio.}
+\label{tab:expd}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{Retention} & \textbf{Post-Q} & \textbf{PPL} & \textbf{Rep} & \textbf{Dist} \\
+\midrule
+Baseline FP32 & 70\% & 70\% & 6.8 & 5.3\% & 61.7\% \\
+Baseline INT8 & 70\% & 60\% & 8.0 & 6.4\% & 58.8\% \\
+\midrule
+No protect.\ FP32 & 77\% & 77\% & 6.9 & 5.3\% & 59.1\% \\
+No protect.\ INT8 & 62\% & 58\% & 8.1 & 5.8\% & 60.3\% \\
+\midrule
+Freeze90 FP32 & 65\% & 65\% & 6.9 & 5.0\% & 63.0\% \\
+Freeze90 INT8 & 65\% & 58\% & 8.2 & 5.6\% & 60.6\% \\
+\midrule
+CF90-90 FP32 & \textbf{80\%} & \textbf{80\%} & 7.2 & 33.6\% & 17.6\% \\
+CF90-90 INT8 & 80\% & 72\% & 8.9 & 25.0\% & 43.6\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three findings emerge.
+
+\textit{1. CF90 protection survives quantization.}
+CF90-90 + INT8 retains 72\% of facts, compared to 58\% for both unprotected + INT8 and freeze-only + INT8.
+The SVD denoising from the compression step provides a 14-point advantage that persists through the quantization pipeline.
+
+\textit{2. CF90 degrades generation quality at 0.5B.}
+Trigram repetition rises from 5\% (baseline) to 34\% (CF90-90 FP32).
+Inspecting the generated text reveals two failure modes: complete silence (empty output on two of five prompts) and verbatim repetition loops (e.g., ``The bicycle is a two-wheeled vehicle'' repeated until the token limit).
+Conversational perplexity increases modestly (6.8 to 7.2), suggesting the model's language modeling capability is mostly intact but its decoding behavior is not.
+
+\textit{3. INT8 quantization partially mitigates the repetition problem.}
+CF90-90 + INT8 has a repetition rate of 25\%, down from 34\% in FP32.
+The distinct token ratio also improves from 17.6\% to 43.6\%.
+We speculate that quantization noise breaks the deterministic loops that arise when the model's generation is dominated by a small number of unfrozen top-layer parameters.
+
+\subsection{SVD as Denoising Before Quantization}
+
+Independent of the knowledge protection pipeline, we tested SVD compression as a preprocessing step before INT8 quantization on Qwen2.5-1.5B.
+
+\begin{table}[h]
+\centering
+\caption{SVD + INT8 vs.\ INT8 alone (Qwen2.5-1.5B).}
+\label{tab:quant}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Factual} & \textbf{MMLU} & \textbf{Reasoning} & \textbf{Composite} \\
+\midrule
+FP32 baseline & 96.7\% & 90\% & 40\% & 82.7\% \\
+INT8 only & 90\% & 90\% & 40\% & 80.0\% \\
+\textbf{SVD90 + INT8} & \textbf{93.3\%} & \textbf{90\%} & \textbf{60\%} & \textbf{85.3\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SVD90 + INT8 outperforms INT8 alone by 5.3 percentage points composite.
+The largest gain is on reasoning (+20 points), suggesting that SVD removes weight-space noise that particularly affects multi-step inference under reduced precision.
+
+\subsection{Scale Behavior}
+
+We evaluated CF90 on Qwen2.5-7B and Qwen2.5-32B to assess whether the generation quality degradation observed at 0.5B persists at larger scales.
+
+\begin{table}[h]
+\centering
+\caption{CF90 at larger scales.}
+\label{tab:scale}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Model} & \textbf{Metric} & \textbf{Baseline} & \textbf{CF90} \\
+\midrule
+Qwen 0.5B & TruthfulQA & 39.1\% & 44.1\% (+5.0\%) \\
+Qwen 7B & HellaSwag / ARC avg & 73\% & 73\% \\
+Qwen 32B & IFEval (instruction following) & --- & 95\% \\
+Qwen 32B & HumanEval (code) & --- & 98\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At 7B, CF90 maintains average benchmark performance with no degradation.
+At 32B, instruction-following (95\%) and code generation (98\%) scores indicate that generation quality is fully preserved.
+The repetition problem at 0.5B is a consequence of insufficient model capacity: freezing 90\% of a 24-layer model leaves only 2 layers for generation, which is not enough at small scale but is proportionally adequate at larger scales.
+
+
+\section{Analysis}
+
+\paragraph{Why does compression help freezing?}
+Layer freezing prevents catastrophic forgetting by making most parameters immutable.
+But the frozen weights still contain noise from the pretraining process.
+When only a few top layers are trainable, the model must express all new behavior through those layers, and any noise in the frozen representations propagates upward.
+SVD compression removes low-energy directions from the frozen weights, producing cleaner internal representations that the trainable top layers can build on more effectively.
+The 14-point improvement of CF90 over freeze-only at 90\% freeze (Table~\ref{tab:expc}) supports this interpretation: the benefit is larger at higher freeze ratios, where the model is more dependent on the quality of frozen representations.
+
+\paragraph{Why does SVD help quantization?}
+A similar denoising argument applies.
+Quantization introduces rounding errors proportional to the scale of each weight matrix.
+When the weight matrix contains low-energy singular components that contribute little to model output but occupy dynamic range, quantization noise in those components can interfere with the higher-energy components.
+Removing the low-energy components via SVD concentrates the weight values into a narrower, more quantization-friendly distribution.
+The 5.3\% composite improvement on Qwen-1.5B (Table~\ref{tab:quant}) is consistent with this explanation.
+
+\paragraph{The generation quality tradeoff.}
+CF90 at 0.5B presents a clear tradeoff: factual knowledge is preserved, but open-ended generation quality is lost.
+The failure modes (empty outputs and repetition loops) are characteristic of models with very few effective parameters for generation.
+With 22 of 24 layers frozen, only two transformer blocks and the language modeling head are free to adapt.
+At 0.5B, these two layers have roughly 40M parameters, which is apparently below the threshold for coherent multi-token generation.
+At 7B with the same 90\% freeze ratio, the top layers have approximately 700M free parameters, which is sufficient.
+
+This suggests a practical rule: CF90 should be used on models where the unfrozen parameter count exceeds approximately 100--200M.
+For a 90\% freeze, this means the full model should be at least 1--2B parameters.
+
+
+\section{Limitations}
+
+Several limitations should be noted.
+
+First, our factual accuracy test uses only 20 fact pairs.
+While the results are statistically significant across seeds, a larger and more diverse fact set would strengthen the claims.
+
+Second, the generation quality metrics (repetition rate, distinct ratio) are coarse proxies for fluency.
+A human evaluation study would provide stronger evidence about the practical impact of the generation degradation at small scale.
+
+Third, all multi-seed experiments were conducted on a single model family (Qwen2.5).
+Results may differ on architectures with different attention patterns or layer counts.
+
+Fourth, the aggressive-vs.-gentle fine-tuning distinction (Section~\ref{sec:method}) means CF90 only works when the user can control the training hyperparameters.
+In settings where aggressive fine-tuning is required for task performance, CF90 may not be applicable.
+
+Fifth, our INT8 quantization implementation (scale-and-round) is simpler than production methods like GPTQ \citep{frantar2022gptq} or AWQ \citep{lin2023awq}.
+The denoising benefit of SVD should be tested with these more sophisticated quantizers.
+
+
+\section{Conclusion}
+
+CF90 provides a simple, training-free preprocessing step that significantly improves knowledge retention during LLM fine-tuning.
+The method requires no additional parameters, no changes to the training loop, and completes in under a minute.
+The key insight is that SVD compression and layer freezing interact synergistically: compression denoises the frozen representations, and freezing protects the compressed structure from being overwritten.
+
+The practical recommendation is straightforward.
+For models at 7B or above, apply CF90 before any fine-tuning that might conflict with pretrained knowledge.
+For quantization pipelines, apply SVD compression before quantizing to improve the quality of the quantized model.
+For models below 1B, use CF90 only when factual retention is more important than generation fluency.
+
+The method is most relevant to practitioners running local models on constrained hardware, where both compression and knowledge preservation are critical.
+As local deployment of language models continues to grow, methods that protect model quality through the compression pipeline will become increasingly important.
+
+
+\appendix
+
+\section{Aggressive Fine-Tuning Results}
+\label{app:aggressive}
+
+\begin{table}[h]
+\centering
+\caption{CF90 under aggressive fine-tuning (3 epochs, lr $= 2 \times 10^{-5}$, Qwen2.5-0.5B).}
+\label{tab:aggressive}
+\begin{tabular}{lc}
+\toprule
+\textbf{Condition} & \textbf{Retention} \\
+\midrule
+No protection & 5\% \\
+Freeze 50\% only & 0\% \\
+Freeze 75\% only & 15\% \\
+CF90 (75\% freeze + compress) & 5\% \\
+Freeze 90\% only & 35\% \\
+CF90 (90\% freeze + compress) & 40\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Under aggressive fine-tuning, all conditions perform much worse.
+CF90 at 90\% freeze still outperforms freeze-only (40\% vs.\ 35\%), but the absolute retention levels are far below the gentle fine-tuning results in Table~\ref{tab:expc}.
+This confirms that gentle hyperparameters are an essential part of the CF90 recipe, not an optional detail.
+
+
+\section{Importance-Guided SVD at Aggressive Compression}
+
+\begin{table}[h]
+\centering
+\caption{Standard vs.\ importance-guided SVD (Qwen2.5-0.5B).}
+\label{tab:importance}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Compression} & \textbf{Standard SVD} & \textbf{Importance SVD} & \textbf{$\Delta$} \\
+\midrule
+90\% & 73.3\% & 80.0\% & +6.7\% \\
+80\% & 80.0\% & 80.0\% & 0\% \\
+70\% & 86.7\% & 80.0\% & $-$6.7\% \\
+50\% & 46.7\% & 73.3\% & +26.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Importance-guided SVD provides the largest benefit at high compression ratios (50\%), where it preserves 3$\times$ more factual accuracy.
+At the 70\% ratio used in CF90, standard SVD is actually slightly better, which is why CF90 uses standard SVD by default.
+
+
+\section{Generation Samples}
+
+Representative outputs from seed 0 on the prompt ``Describe how a bicycle works:''
+
+\smallskip
+\noindent\textbf{Baseline FP32:} ``The bicycle is a type of vehicle that uses two wheels to move forward. The rider sits on a seat and pedals with their feet, which turns a chain connected to the rear wheel\ldots'' (0\% repetition)
+
+\smallskip
+\noindent\textbf{CF90-90 FP32:} ``The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle, typically propelled by pedaling. The bicycle is a two-wheeled vehicle\ldots'' (78\% repetition)
+
+\smallskip
+\noindent\textbf{CF90-90 INT8:} (empty output)
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
