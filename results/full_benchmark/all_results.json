@@ -1,0 +1,62 @@
+[
+  {
+    "config": "baseline",
+    "compression": 1.0,
+    "scores": {
+      "arc_challenge": 0.285,
+      "hellaswag": 0.405,
+      "truthfulqa_mc2": 0.4007
+    },
+    "avg_score": 0.36356666666666665
+  },
+  {
+    "config": "svd95",
+    "compression": 0.95,
+    "scores": {
+      "arc_challenge": 0.3,
+      "hellaswag": 0.41,
+      "truthfulqa_mc2": 0.4023
+    },
+    "avg_score": 0.37076666666666663
+  },
+  {
+    "config": "svd92",
+    "compression": 0.92,
+    "scores": {
+      "arc_challenge": 0.295,
+      "hellaswag": 0.41,
+      "truthfulqa_mc2": 0.4115
+    },
+    "avg_score": 0.3721666666666666
+  },
+  {
+    "config": "svd90",
+    "compression": 0.9,
+    "scores": {
+      "arc_challenge": 0.305,
+      "hellaswag": 0.415,
+      "truthfulqa_mc2": 0.4132
+    },
+    "avg_score": 0.3777333333333333
+  },
+  {
+    "config": "svd88",
+    "compression": 0.88,
+    "scores": {
+      "arc_challenge": 0.28,
+      "hellaswag": 0.41,
+      "truthfulqa_mc2": 0.4081
+    },
+    "avg_score": 0.3660333333333334
+  },
+  {
+    "config": "svd85",
+    "compression": 0.85,
+    "scores": {
+      "arc_challenge": 0.27,
+      "hellaswag": 0.415,
+      "truthfulqa_mc2": 0.4156
+    },
+    "avg_score": 0.3668666666666667
+  }
+]

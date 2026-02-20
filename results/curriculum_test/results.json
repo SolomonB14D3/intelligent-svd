@@ -1,0 +1,26 @@
+{
+  "A_baseline": {
+    "core_acc": 1.0,
+    "extended_acc": 1.0
+  },
+  "B_sequential": {
+    "core_after_phase1": 1.0,
+    "core_acc": 0.95,
+    "extended_acc": 1.0,
+    "core_forgotten": 0.050000000000000044
+  },
+  "C_curriculum_compress": {
+    "core_after_phase1": 1.0,
+    "core_after_compress": 1.0,
+    "core_acc": 0.7,
+    "extended_acc": 1.0,
+    "core_forgotten": 0.30000000000000004
+  },
+  "D_standard_svd": {
+    "core_after_phase1": 1.0,
+    "core_after_compress": 1.0,
+    "core_acc": 0.2,
+    "extended_acc": 1.0,
+    "core_forgotten": 0.8
+  }
+}

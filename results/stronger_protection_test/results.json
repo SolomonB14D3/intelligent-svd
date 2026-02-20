@@ -1,0 +1,65 @@
+{
+  "No protection": {
+    "pre": 0.7,
+    "post_compress": 0.7,
+    "post": 0.05,
+    "conflict": 0.9,
+    "retained": 0.05
+  },
+  "Freeze 50% only": {
+    "pre": 0.7,
+    "post_compress": 0.7,
+    "post": 0.0,
+    "conflict": 0.95,
+    "retained": 0.0
+  },
+  "Freeze 75% only": {
+    "pre": 0.7,
+    "post_compress": 0.7,
+    "post": 0.15,
+    "conflict": 0.65,
+    "retained": 0.15
+  },
+  "Freeze 75% + Compress 70%": {
+    "pre": 0.7,
+    "post_compress": 0.75,
+    "post": 0.05,
+    "conflict": 0.8,
+    "retained": 0.05
+  },
+  "Freeze 75% + Compress 50%": {
+    "pre": 0.7,
+    "post_compress": 0.65,
+    "post": 0.05,
+    "conflict": 0.75,
+    "retained": 0.05
+  },
+  "Freeze 90% only": {
+    "pre": 0.7,
+    "post_compress": 0.7,
+    "post": 0.35,
+    "conflict": 0.15,
+    "retained": 0.35
+  },
+  "Freeze 90% + Compress 70%": {
+    "pre": 0.7,
+    "post_compress": 0.8,
+    "post": 0.4,
+    "conflict": 0.15,
+    "retained": 0.4
+  },
+  "Freeze 75%, gentle FT": {
+    "pre": 0.7,
+    "post_compress": 0.7,
+    "post": 0.6,
+    "conflict": 0.15,
+    "retained": 0.6
+  },
+  "Freeze 75% + Compress, gentle FT": {
+    "pre": 0.7,
+    "post_compress": 0.75,
+    "post": 0.75,
+    "conflict": 0.15,
+    "retained": 0.75
+  }
+}

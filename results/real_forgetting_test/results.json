@@ -1,0 +1,21 @@
+{
+  "A_no_protection": {
+    "pre": 0.7,
+    "post": 0.05,
+    "conflict_learned": 0.95,
+    "forgotten": 0.6499999999999999
+  },
+  "B_freeze_only": {
+    "pre": 0.7,
+    "post": 0.05,
+    "conflict_learned": 0.95,
+    "forgotten": 0.6499999999999999
+  },
+  "C_compress_freeze": {
+    "pre": 0.7,
+    "post_compress": 0.75,
+    "post": 0.0,
+    "conflict_learned": 0.95,
+    "forgotten": 0.75
+  }
+}

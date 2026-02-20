@@ -1,0 +1,113 @@
+{
+  "A: No protection": {
+    "avg_core": 0.85,
+    "std_core": 0.07071067811865474,
+    "avg_conflict": 1.0,
+    "trials": [
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.85,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.8,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.75,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.9,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.95,
+        "final_conflict": 1.0
+      }
+    ]
+  },
+  "B: Freeze only": {
+    "avg_core": 0.6300000000000001,
+    "std_core": 0.09273618495495702,
+    "avg_conflict": 1.0,
+    "trials": [
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.55,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.5,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.65,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.75,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.7,
+        "final_conflict": 1.0
+      }
+    ]
+  },
+  "C: Compress + Freeze": {
+    "avg_core": 0.7100000000000001,
+    "std_core": 0.10198039027185568,
+    "avg_conflict": 1.0,
+    "trials": [
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.65,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.55,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.75,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.75,
+        "final_conflict": 1.0
+      },
+      {
+        "core_after_p1": 1.0,
+        "core_after_compress": 1.0,
+        "final_core": 0.85,
+        "final_conflict": 1.0
+      }
+    ]
+  }
+}

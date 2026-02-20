@@ -1,0 +1,37 @@
+{
+  "90%": {
+    "no_protection": 0.97,
+    "freeze_only": 0.96,
+    "compress_freeze": 0.95,
+    "cf_vs_freeze": -0.010000000000000009,
+    "cf_vs_none": -0.020000000000000018
+  },
+  "80%": {
+    "no_protection": 0.97,
+    "freeze_only": 0.96,
+    "compress_freeze": 0.95,
+    "cf_vs_freeze": -0.010000000000000009,
+    "cf_vs_none": -0.020000000000000018
+  },
+  "70%": {
+    "no_protection": 0.97,
+    "freeze_only": 0.96,
+    "compress_freeze": 0.9400000000000001,
+    "cf_vs_freeze": -0.019999999999999907,
+    "cf_vs_none": -0.029999999999999916
+  },
+  "60%": {
+    "no_protection": 0.97,
+    "freeze_only": 0.96,
+    "compress_freeze": 0.95,
+    "cf_vs_freeze": -0.010000000000000009,
+    "cf_vs_none": -0.020000000000000018
+  },
+  "50%": {
+    "no_protection": 0.97,
+    "freeze_only": 0.96,
+    "compress_freeze": 0.95,
+    "cf_vs_freeze": -0.010000000000000009,
+    "cf_vs_none": -0.020000000000000018
+  }
+}
