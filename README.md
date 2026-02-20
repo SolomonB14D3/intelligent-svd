@@ -38,37 +38,59 @@ CF90 preserves factual knowledge at all scales, but **degrades generation qualit
 ## Quick Start
 
 ```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM
+from intelligent_svd import apply_cf90
 
-# Add src/ to path (or pip install -e .)
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B", torch_dtype=torch.float32)
+stats = apply_cf90(model, ratio=0.7, freeze_ratio=0.75)
+# Compressed 72 matrices, frozen 21/28 layers
+# Now fine-tune gently: 1 epoch, lr=1e-5, batch_size=4
+```
+
+Or step by step if you want more control:
+
+```python
 from intelligent_svd import compress_qko, freeze_layers
 
-model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B", torch_dtype=torch.float32)
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-0.5B")
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B", torch_dtype=torch.float32)
 
-# Compress Q, K, O projections (keeps 70% of singular values)
+# Step 1: Compress Q, K, O projections (keeps 70% of singular values)
 n_compressed = compress_qko(model, ratio=0.7)
-print(f"Compressed {n_compressed} matrices")
 
-# Freeze 75% of layers for knowledge preservation
+# Step 2: Freeze 75% of layers from the bottom up
 stats = freeze_layers(model, ratio=0.75)
-print(f"Frozen {stats['n_frozen']}/{stats['n_layers']} layers")
 
-# Now fine-tune gently on new data
+# Step 3: Fine-tune gently on your data
 # Use: 1 epoch, lr=1e-5, batch_size=4
 ```
 
 ### Importance-Guided Compression (for aggressive ratios)
 
+When compressing below 70%, standard SVD starts losing facts. The importance-guided variant uses gradient information to decide which singular values to keep, preserving 3x more factual knowledge at 50% compression.
+
+How it works: run a few forward+backward passes on factual probe prompts (e.g., "The capital of France is Paris."), accumulate absolute gradients for each weight in Q/K/O projections, then during SVD, score each singular value by its contribution to those high-gradient directions instead of just keeping the largest ones by magnitude.
+
 ```python
 from intelligent_svd import compute_importance, compress_qko_importance
 
-# Compute which weights matter most for factual knowledge
+# Compute gradient-based importance (7 built-in factual probes, or pass your own)
 importance = compute_importance(model, tokenizer)
+
+# You can also pass domain-specific probes:
+# importance = compute_importance(model, tokenizer, prompts=[
+#     "Aspirin inhibits cyclooxygenase.",
+#     "TCP uses a three-way handshake.",
+# ])
 
 # Compress with importance guidance (3x better at 50% compression)
 n_compressed = compress_qko_importance(model, importance, ratio=0.5)
 ```
+
+### Model Compatibility
+
+CF90 works on any HuggingFace causal LM that stores attention layers in `model.model.layers[i].self_attn.{q,k,o}_proj` (the standard layout for Qwen, Llama, Mistral, and most recent architectures). GPT-2-style models using `model.transformer.h` are also supported.
+
+Tested on Qwen2.5 (0.5B, 1.5B, 7B, 32B). The architecture hooks should work on Llama 3.x and Mistral without changes, but these have not been formally validated yet. If you test on another model family, please open an issue with results.
 
 ## Reproduction
 
