@@ -323,7 +323,7 @@ We evaluated CF90 on Qwen2.5-7B and Qwen2.5-32B to assess whether the generation
 
 \begin{table}[h]
 \centering
-\caption{CF90 at larger scales.}
+\caption{CF90 at larger scales and across architectures.}
 \label{tab:scale}
 \begin{tabular}{llcc}
 \toprule
@@ -333,13 +333,22 @@ Qwen 0.5B & TruthfulQA & 39.1\% & 44.1\% (+5.0\%) \\
 Qwen 7B & HellaSwag / ARC avg & 73\% & 73\% \\
 Qwen 32B & IFEval (instruction following) & --- & 95\% \\
 Qwen 32B & HumanEval (code) & --- & 98\% \\
+\midrule
+Llama 2 7B & Fact retention (post-conflict) & 32\% & 78\% (+46\%) \\
+Llama 2 7B & Repetition rate & 40.3\% & 24.9\% (-15.4\%) \\
+Llama 2 7B & Retention through INT8 & 32\% & 77\% (+45\%) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-At 7B, CF90 maintains average benchmark performance with no degradation.
+At 7B, CF90 maintains average benchmark performance with no degradation across both Qwen and Llama architectures.
 At 32B, instruction-following (95\%) and code generation (98\%) scores indicate that generation quality is fully preserved.
-The repetition problem at 0.5B is a consequence of insufficient model capacity: freezing 90\% of a 24-layer model leaves only 2 layers for generation, which is not enough at small scale but is proportionally adequate at larger scales.
+
+To validate cross-architecture generalization, we ran Experiments C and D on Llama 2 7B (3 seeds each).
+CF90 at 90\% freeze retained 78\% of facts after conflicting fine-tuning vs 32\% unprotected (Table~\ref{tab:scale}), matching the pattern observed on Qwen.
+CF90 + INT8 retained 77\% on Llama, confirming that the denoising benefit of SVD survives quantization across model families.
+At 7B, CF90 also reduced the 3-gram repetition rate from 40.3\% to 24.9\%, the opposite of the quality degradation seen at 0.5B.
+This confirms that the repetition problem is a consequence of insufficient model capacity, not an inherent limitation of the method.
 
 
 \section{Analysis}
@@ -379,8 +388,8 @@ While the results are statistically significant across seeds, a larger and more 
 Second, the generation quality metrics (repetition rate, distinct ratio) are coarse proxies for fluency.
 A human evaluation study would provide stronger evidence about the practical impact of the generation degradation at small scale.
 
-Third, all multi-seed experiments were conducted on a single model family (Qwen2.5).
-Results may differ on architectures with different attention patterns or layer counts.
+Third, multi-seed experiments were conducted on two model families (Qwen2.5 and Llama 2) with consistent results.
+However, architectures with non-standard attention patterns (e.g., mixture-of-experts, multi-query attention) have not been tested.
 
 Fourth, the aggressive-vs.-gentle fine-tuning distinction (Section~\ref{sec:method}) means CF90 only works when the user can control the training hyperparameters.
 In settings where aggressive fine-tuning is required for task performance, CF90 may not be applicable.

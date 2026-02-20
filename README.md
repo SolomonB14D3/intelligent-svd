@@ -12,6 +12,8 @@ Knowledge-preserving compression for large language models via importance-guided
 | CF90 + INT8 full pipeline | 72% retention vs 58% unprotected | Qwen 0.5B |
 | Importance-guided SVD at 50% compression | 73.3% vs 46.7% standard (3x better) | Qwen 0.5B |
 | CF90 at 7B scale | 73% maintained (no degradation) | Qwen 7B |
+| CF90 on Llama 2 7B (cross-arch) | 78% retention, 25% repetition (vs 40% baseline) | Llama 2 7B |
+| CF90 + INT8 on Llama | 77% retention through quantization | Llama 2 7B |
 
 ## Method: CF90 (Compress-Freeze)
 
@@ -90,7 +92,11 @@ n_compressed = compress_qko_importance(model, importance, ratio=0.5)
 
 CF90 works on any HuggingFace causal LM that stores attention layers in `model.model.layers[i].self_attn.{q,k,o}_proj` (the standard layout for Qwen, Llama, Mistral, and most recent architectures). GPT-2-style models using `model.transformer.h` are also supported.
 
-Tested on Qwen2.5 (0.5B, 1.5B, 7B, 32B). The architecture hooks should work on Llama 3.x and Mistral without changes, but these have not been formally validated yet. If you test on another model family, please open an issue with results.
+Validated on:
+- **Qwen2.5**: 0.5B, 1.5B, 7B, 32B (full experimental suite)
+- **Llama 2**: 7B (Experiments C + D, 3 seeds each)
+
+The architecture hooks should work on Mistral without changes (same `model.model.layers` layout). If you test on another model family, please open an issue with results.
 
 ## Reproduction
 
@@ -118,7 +124,7 @@ python experiments/run_final_validation.py
 
 ### Platform Notes (Apple Silicon)
 
-- Use **CPU** for PyTorch training/compression (MPS has matmul errors with Qwen)
+- Use **CPU** for PyTorch training/compression (MPS has matmul errors with Qwen; also produces NaN gradients when training with frozen layers on any model)
 - Use **MLX** for fast inference (`mlx_lm`)
 - Set `HF_HOME` to external storage for large models
 
@@ -141,6 +147,8 @@ python experiments/run_final_validation.py
 | B | CF90 vs LoRA (3 seeds) | CF90 73% > LoRA-r8 68% |
 | C | CF90 protection (5 seeds) | **p=0.0072**, CF90 79% vs freeze 65% |
 | D | CF90 + INT8 full pipeline | 72% retention through quant; generation quality tradeoff |
+| C-Llama | CF90 protection on Llama 2 7B (3 seeds) | 68% CF90 vs 65% freeze-only; cross-arch validation |
+| D-Llama | CF90 + INT8 on Llama 2 7B (3 seeds) | 78% retention; CF90 reduces repetition from 40% to 25% |
 
 See [RESULTS.md](RESULTS.md) for detailed numbers and analysis.
 

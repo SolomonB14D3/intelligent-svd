@@ -1,0 +1,162 @@
+{
+  "No protection": {
+    "seed_0": {
+      "retention_rate": 0.05,
+      "correct": 1,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.05,
+      "correct": 1,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.1,
+      "correct": 2,
+      "total": 20
+    }
+  },
+  "Freeze 75% only": {
+    "seed_0": {
+      "retention_rate": 0.6,
+      "correct": 12,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.7,
+      "correct": 14,
+      "total": 20
+    }
+  },
+  "CF90 (75% + compress)": {
+    "seed_0": {
+      "retention_rate": 0.7,
+      "correct": 14,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.7,
+      "correct": 14,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.65,
+      "correct": 13,
+      "total": 20
+    }
+  },
+  "Freeze 90% only": {
+    "seed_0": {
+      "retention_rate": 0.85,
+      "correct": 17,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.7,
+      "correct": 14,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.8,
+      "correct": 16,
+      "total": 20
+    }
+  },
+  "CF90 (90% + compress)": {
+    "seed_0": {
+      "retention_rate": 0.75,
+      "correct": 15,
+      "total": 20
+    },
+    "seed_1": {
+      "retention_rate": 0.75,
+      "correct": 15,
+      "total": 20
+    },
+    "seed_2": {
+      "retention_rate": 0.8,
+      "correct": 16,
+      "total": 20
+    }
+  },
+  "summary": {
+    "No protection": {
+      "mean": 0.06666666666666667,
+      "std": 0.02886751345948129,
+      "min": 0.05,
+      "max": 0.1,
+      "ci95": 0.03266666666666667,
+      "n": 3,
+      "values": [
+        0.05,
+        0.05,
+        0.1
+      ]
+    },
+    "Freeze 75% only": {
+      "mean": 0.65,
+      "std": 0.04999999999999999,
+      "min": 0.6,
+      "max": 0.7,
+      "ci95": 0.056580326380583315,
+      "n": 3,
+      "values": [
+        0.6,
+        0.65,
+        0.7
+      ]
+    },
+    "CF90 (75% + compress)": {
+      "mean": 0.6833333333333332,
+      "std": 0.02886751345948125,
+      "min": 0.65,
+      "max": 0.7,
+      "ci95": 0.03266666666666662,
+      "n": 3,
+      "values": [
+        0.7,
+        0.7,
+        0.65
+      ]
+    },
+    "Freeze 90% only": {
+      "mean": 0.7833333333333332,
+      "std": 0.07637626158259735,
+      "min": 0.7,
+      "max": 0.85,
+      "ci95": 0.0864278761614433,
+      "n": 3,
+      "values": [
+        0.85,
+        0.7,
+        0.8
+      ]
+    },
+    "CF90 (90% + compress)": {
+      "mean": 0.7666666666666666,
+      "std": 0.028867513459481315,
+      "min": 0.75,
+      "max": 0.8,
+      "ci95": 0.0326666666666667,
+      "n": 3,
+      "values": [
+        0.75,
+        0.75,
+        0.8
+      ]
+    }
+  },
+  "metadata": {
+    "model": "NousResearch/Llama-2-7b-hf",
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  }
+}
