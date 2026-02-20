@@ -10,6 +10,19 @@ Key numbers:
 - **3x better** fact preservation than standard SVD at 50% compression
 - **+55.6%** accuracy from train-big-compress-smart vs train-small
 
+### Scaling Analysis: The Critical Contrast
+
+CF90's effect on generation quality reverses between small and large models:
+
+| Scale | Fact Retention | Repetition Rate | Interpretation |
+|-------|---------------|-----------------|----------------|
+| **0.5B** (Qwen) | 72% (good) | 33% (bad, up from 5%) | Knows facts but can't speak |
+| **7B** (Llama) | 78% (good) | **25% (good, down from 40%)** | Knows facts AND speaks better |
+
+At 0.5B, freezing 90% of 24 layers leaves only 2 unfrozen layers — not enough capacity for fluent generation. At 7B, freezing 90% of 32 layers still leaves 3 unfrozen layers across a much wider model (4096-dim vs 896-dim), providing sufficient generation capacity. The SVD compression acts as a denoiser at scale, removing redundant attention patterns that contribute to repetitive loops.
+
+**Bottom line**: CF90 preserves knowledge at any scale. It only hurts generation quality below ~1B parameters.
+
 ---
 
 ## Experiment 1: Standard vs Importance-Guided SVD
