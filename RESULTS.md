@@ -10,7 +10,7 @@ Key numbers:
 - **3x better** fact preservation than standard SVD at 50% compression
 - **+55.6%** accuracy from train-big-compress-smart vs train-small
 
-### Scaling Analysis: The Critical Contrast
+### Scaling Discovery: From Parameter Bottleneck to Structural Regularizer
 
 CF90's effect on generation quality reverses between small and large models:
 
@@ -19,9 +19,11 @@ CF90's effect on generation quality reverses between small and large models:
 | **0.5B** (Qwen) | 72% (good) | 33% (bad, up from 5%) | Knows facts but can't speak |
 | **7B** (Llama) | 78% (good) | **25% (good, down from 40%)** | Knows facts AND speaks better |
 
-At 0.5B, freezing 90% of 24 layers leaves only 2 unfrozen layers — not enough capacity for fluent generation. At 7B, freezing 90% of 32 layers still leaves 3 unfrozen layers across a much wider model (4096-dim vs 896-dim), providing sufficient generation capacity. The SVD compression acts as a denoiser at scale, removing redundant attention patterns that contribute to repetitive loops.
+This reversal reflects a qualitative shift in CF90's role. In smaller architectures (0.5B, Qwen), the method functions primarily as a **parameter bottleneck**: freezing 90% of 24 layers leaves only 2 unfrozen layers (896-dim), insufficient capacity for fluent generation, forcing the model into repetitive patterns to maintain coherence. At 7B (Llama 2), CF90 acts as a **structural regularizer**. The low-rank constraint imposed by SVD on the unfrozen attention projections strips away high-rank components from the weight updates — effectively removing redundant patterns that contribute to mode collapse. The result is a 38.2% reduction in 3-gram repetition relative to the 7B baseline (40.3% → 24.9%), suggesting that at sufficient scale, Intelligent SVD doesn't just protect the model — it actively improves generation fluency.
 
-**Bottom line**: CF90 preserves knowledge at any scale. It only hurts generation quality below ~1B parameters.
+This structural regularization also confers unexpected resilience to quantization. On Qwen 0.5B, INT8 quantization paradoxically reduces CF90's repetition from 33.6% (FP32) to 25.0% — quantization noise breaks the repetitive loops caused by the constrained layer budget. On Llama 7B, CF90+INT8 retains 77% of facts through quantization versus 32% for unprotected+INT8. The low-rank structure imposed by SVD appears inherently more robust to 8-bit rounding errors than full-rank weights, positioning CF90 as both a knowledge shield and a quantization-friendly structural prior.
+
+**Bottom line**: CF90 preserves knowledge at any scale. Below ~1B parameters it trades generation quality for knowledge retention. At 7B+ it improves both.
 
 ---
 
