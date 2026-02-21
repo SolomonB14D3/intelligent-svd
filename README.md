@@ -6,16 +6,24 @@ Knowledge-preserving compression for large language models via importance-guided
 
 ## Key Findings
 
+### Cross-Architecture Validation (Qwen + Llama 2)
+
+| Finding | Qwen (0.5B, 5 seeds) | Llama 2 (7B, 3 seeds) |
+|---------|----------------------|----------------------|
+| CF90 fact retention | **79%** (p=0.0072) | **78%** |
+| CF90 vs freeze-only | +14% (79% vs 65%) | +3% (68% vs 65%) |
+| Unprotected forgetting | 4% retained | 7% retained |
+| CF90 + INT8 retention | 72% | 77% |
+| Repetition (CF90 vs baseline) | 33% vs 5% (⚠️ 0.5B bottleneck) | **25% vs 40%** (✓ 7B regularizer) |
+
+### Additional Results
+
 | Finding | Result | Model |
 |---------|--------|-------|
-| CF90 knowledge protection (p=0.0072) | 79% retention vs 65% freeze-only | Qwen 0.5B |
-| CF90 beats LoRA on fact retention | 73% vs 68% (LoRA r=8) | Qwen 0.5B |
+| CF90 beats LoRA on fact retention | 73% vs 68% (LoRA r=8, 3 seeds) | Qwen 0.5B |
 | SVD + INT8 vs INT8 alone | 85.3% vs 80.0% composite (+5.3%) | Qwen 1.5B |
-| CF90 + INT8 full pipeline | 72% retention vs 58% unprotected | Qwen 0.5B |
 | Importance-guided SVD at 50% compression | 73.3% vs 46.7% standard (3x better) | Qwen 0.5B |
-| CF90 at 7B scale | 73% maintained (no degradation) | Qwen 7B |
-| CF90 on Llama 2 7B (cross-arch) | 78% retention, 25% repetition (vs 40% baseline) | Llama 2 7B |
-| CF90 + INT8 on Llama | 77% retention through quantization | Llama 2 7B |
+| CF90 at 7B scale (benchmarks) | 73% maintained (no degradation) | Qwen 7B |
 
 ## Method: CF90 (Compress-Freeze)
 
@@ -25,11 +33,27 @@ Knowledge-preserving compression for large language models via importance-guided
 
 SVD compression removes noise from attention weight matrices while preserving the signal directions most important for factual knowledge. Freezing prevents catastrophic forgetting. The combination achieves better knowledge retention than either technique alone.
 
-### Important: Scale-Dependent Generation Quality
+### Scale-Dependent Behavior
 
-CF90 preserves factual knowledge at all scales, but **degrades generation quality (fluency, coherence) on models below ~1B parameters**. At 0.5B, CF90 increases 3-gram repetition from 5% to 33%. This does not occur at 7B+ where IFEval (instruction following) remains at 95% and HumanEval (code) at 98%.
+CF90's effect on generation quality reverses between small and large models:
+
+| Scale | Fact Retention | Repetition Rate | Mechanism |
+|-------|---------------|-----------------|-----------|
+| **0.5B** (Qwen) | 72% (good) | 33% (up from 5%) | **Parameter bottleneck** — too few unfrozen layers for fluency |
+| **7B** (Llama 2) | 78% (good) | **25% (down from 40%)** | **Structural regularizer** — SVD strips redundant patterns |
+
+At 0.5B, freezing 90% of 24 layers leaves only 2 unfrozen layers, insufficient capacity for fluent generation. At 7B, the low-rank constraint from SVD removes high-rank components that contribute to mode collapse, reducing 3-gram repetition by 38%. This also confers quantization resilience: CF90+INT8 retains 77% of facts on Llama 7B vs 32% unprotected. See [RESULTS.md](RESULTS.md) for the full scaling analysis.
 
 **Recommendation**: Use CF90 on 7B+ models for production. On smaller models, use it only when fact retention matters more than generation quality (e.g., knowledge distillation, fact-checking, retrieval).
+
+### Confidence Cartography: Locate, Then Protect
+
+This work pairs with [Confidence Cartography](https://github.com/SolomonB14D3/confidence-cartography) ([![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18718611.svg)](https://doi.org/10.5281/zenodo.18718611)), which maps where a model is uncertain by measuring the probability it assigns to its own tokens (teacher-forced confidence). Together they form a two-stage pipeline:
+
+1. **Cartography** identifies *which* weight regions encode uncertain or contested knowledge (ρ = 0.652 correlation with human false-belief prevalence, p = 0.016).
+2. **Intelligent SVD** determines *how* to protect those weights during fine-tuning, compressing noise out of attention projections so downstream updates cannot overwrite factual signal.
+
+Run confidence cartography first to locate fragile knowledge, then apply CF90 to lock it in before any further training. This converts a blanket freeze into a targeted intervention. A standalone [toolkit](https://github.com/SolomonB14D3/confidence-cartography-toolkit) ([![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18718649.svg)](https://doi.org/10.5281/zenodo.18718649)) is available for the confidence extraction engine.
 
 ### Compression Safety Guide
 
@@ -38,6 +62,8 @@ CF90 preserves factual knowledge at all scales, but **degrades generation qualit
 | **Q, K, O projections** | Yes — 70% rank | Main compression target |
 | **V projection** | 90-95% only | Marginal gains, high risk below 90% |
 | **MLP layers** | Never | Destroys model at any compression level |
+
+Validated on Qwen (0.5B–32B) and Llama 2 (7B). Same safety thresholds apply across architectures.
 
 ## Quick Start
 
@@ -167,15 +193,6 @@ python experiments/run_final_validation.py
 | D-Llama | CF90 + INT8 on Llama 2 7B (3 seeds) | 78% retention; CF90 reduces repetition from 40% to 25% |
 
 See [RESULTS.md](RESULTS.md) for detailed numbers and analysis.
-
-## Connection to Confidence Cartography
-
-This work pairs with [Confidence Cartography](https://github.com/SolomonB14D3/confidence-cartography), which maps where a model is uncertain by measuring the probability it assigns to its own tokens (teacher-forced confidence). Together they form a two-stage pipeline:
-
-1. **Cartography** identifies *which* weight regions encode uncertain or contested knowledge (ρ = 0.652 correlation with human false-belief prevalence, p = 0.016).
-2. **Intelligent SVD** determines *how* to protect those weights during fine-tuning, compressing the noise out of attention projections so that downstream updates cannot overwrite factual signal.
-
-The practical implication: run confidence cartography first to locate fragile knowledge, then apply CF90 to lock it in before any further training. This converts a 3–5× compute overhead into a targeted intervention rather than a blanket freeze.
 
 ## Citation
 
