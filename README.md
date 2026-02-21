@@ -1,5 +1,7 @@
 # Intelligent SVD
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18718545.svg)](https://doi.org/10.5281/zenodo.18718545)
+
 Knowledge-preserving compression for large language models via importance-guided SVD of attention projections.
 
 ## Key Findings
@@ -182,8 +184,9 @@ If you use this work, please cite:
 ```
 @software{intelligent_svd,
   author = {Bryan Sanchez},
-  title = {Intelligent SVD: Knowledge-Preserving Compression for LLMs},
+  title = {CF90: Knowledge-Preserving Compression for LLMs via SVD and Layer Freezing},
   year = {2026},
+  doi = {10.5281/zenodo.18718545},
   url = {https://github.com/SolomonB14D3/intelligent-svd}
 }
 ```
