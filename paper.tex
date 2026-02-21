@@ -89,7 +89,7 @@ AWQ \citep{lin2023awq} identifies salient weight channels via activation magnitu
 SqueezeLLM \citep{kim2023squeezellm} combines non-uniform quantization with sparse decomposition.
 QLoRA \citep{dettmers2023qlora} fine-tunes LoRA adapters through a frozen 4-bit quantized base model.
 LQ-LoRA \citep{guo2023lqlora} decomposes each weight matrix into a high-precision low-rank component plus a quantized residual.
-CALDERA \citep{saha2024caldera} extends this to jointly quantize both the low-rank factors and the residual.
+CALDERA \citep{saha2024caldera} decomposes weights as $W = Q + LR$ and jointly quantizes both the low-rank factors and the residual to low precision.
 
 We contribute the observation that SVD compression before quantization acts as denoising, improving quantized model quality by 5.3\% composite on Qwen2.5-1.5B.
 This is complementary to these existing methods: CF90 could be applied as a preprocessing step before any of them.
