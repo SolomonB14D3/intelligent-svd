@@ -208,6 +208,15 @@ If you use this work, please cite:
 }
 ```
 
+The rho metric used for knowledge auditing is introduced in:
+
+> Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models.* Zenodo. [doi:10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506)
+
+### Related Projects
+
+- [knowledge-fidelity](https://github.com/SolomonB14D3/knowledge-fidelity) — Unifies CF90 compression with behavioral auditing. Includes `rho-audit` CLI for standalone behavioral profiling.
+- [confidence-cartography](https://github.com/SolomonB14D3/confidence-cartography) — The foundational false-belief detection method.
+
 ## License
 
 MIT
