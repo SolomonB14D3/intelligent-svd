@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.backends._legacy:_Backend"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "intelligent-svd"
@@ -30,9 +30,18 @@ apple = [
     "mlx>=0.5",
     "mlx-lm>=0.5",
 ]
+audit = [
+    "rho-eval>=2.2",
+]
 dev = [
     "lm-eval>=0.4",
     "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests that require model downloads or GPU (deselect with '-m \"not slow\"')",
 ]
 
 [tool.setuptools.packages.find]

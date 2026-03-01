@@ -37,3 +37,15 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+
+# Experiment output logs
+results/**/*.log
+
+# Local data
+data/

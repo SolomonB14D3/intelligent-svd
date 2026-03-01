@@ -60,3 +60,10 @@ __all__ = [
     "unfreeze_all",
     "compute_importance",
 ]
+
+# Optional: rho-eval validation bridge (install with `pip install intelligent-svd[audit]`)
+try:
+    from intelligent_svd.validate import validate_compression, CompressionValidation
+    __all__ += ["validate_compression", "CompressionValidation"]
+except ImportError:
+    pass  # rho-eval not installed — validation unavailable
