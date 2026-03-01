@@ -49,3 +49,6 @@ results/**/*.log
 
 # Local data
 data/
+
+# Paper PDF (build from LaTeX)
+paper.pdf
