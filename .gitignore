@@ -44,11 +44,14 @@ Thumbs.db
 *.log
 *.out
 
-# Experiment output logs
-results/**/*.log
+# Experiment results (unpublished data — belongs in paper, not public repo)
+results/
 
 # Local data
 data/
 
-# Paper PDF (build from LaTeX)
+# Paper (unpublished — submit via TMLR, not public repo)
+paper.tex
 paper.pdf
+*.bib
+RESULTS.md

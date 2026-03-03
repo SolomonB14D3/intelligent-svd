@@ -1,69 +1,15 @@
 # Intelligent SVD
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18718545.svg)](https://doi.org/10.5281/zenodo.18718545)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Knowledge-preserving compression for large language models via importance-guided SVD of attention projections.
+**Knowledge-preserving compression for large language models via importance-guided SVD of attention projections.**
 
-## Key Findings
+## What It Does
 
-### Cross-Architecture Validation (Qwen + Llama 2)
+CF90 (Compress-Freeze) compresses Q, K, O attention projections via SVD while freezing most layers, protecting factual knowledge during subsequent fine-tuning. An importance-guided variant uses gradient information to preserve critical singular values at aggressive compression ratios.
 
-| Finding | Qwen (0.5B, 5 seeds) | Llama 2 (7B, 3 seeds) |
-|---------|----------------------|----------------------|
-| CF90 fact retention | **79%** (p=0.0072) | **78%** |
-| CF90 vs freeze-only | +14% (79% vs 65%) | +3% (68% vs 65%) |
-| Unprotected forgetting | 4% retained | 7% retained |
-| CF90 + INT8 retention | 72% | 77% |
-| Repetition (CF90 vs baseline) | 33% vs 5% (⚠️ 0.5B bottleneck) | **25% vs 40%** (✓ 7B regularizer) |
-
-### Additional Results
-
-| Finding | Result | Model |
-|---------|--------|-------|
-| CF90 beats LoRA on fact retention | 73% vs 68% (LoRA r=8, 3 seeds) | Qwen 0.5B |
-| SVD + INT8 vs INT8 alone | 85.3% vs 80.0% composite (+5.3%) | Qwen 1.5B |
-| Importance-guided SVD at 50% compression | 73.3% vs 46.7% standard (+26.7 pp) | Qwen 0.5B |
-| CF90 at 7B scale (benchmarks) | 73% maintained (no degradation) | Qwen 7B |
-
-## Method: CF90 (Compress-Freeze)
-
-1. **Compress** Q, K, O attention projections at 70% rank via SVD
-2. **Freeze** 75% of layers (from bottom up)
-3. **Fine-tune gently** (1 epoch, 1e-5 LR)
-
-SVD compression removes noise from attention weight matrices while preserving the signal directions most important for factual knowledge. Freezing prevents catastrophic forgetting. The combination achieves better knowledge retention than either technique alone.
-
-### Scale-Dependent Behavior
-
-CF90's effect on generation quality reverses between small and large models:
-
-| Scale | Fact Retention | Repetition Rate | Mechanism |
-|-------|---------------|-----------------|-----------|
-| **0.5B** (Qwen) | 72% (good) | 33% (up from 5%) | **Parameter bottleneck** — too few unfrozen layers for fluency |
-| **7B** (Llama 2) | 78% (good) | **25% (down from 40%)** | **Structural regularizer** — SVD strips redundant patterns |
-
-At 0.5B, freezing 90% of 24 layers leaves only 2 unfrozen layers, insufficient capacity for fluent generation. At 7B, the low-rank constraint from SVD removes high-rank components that contribute to mode collapse, reducing 3-gram repetition by 38%. This also confers quantization resilience: CF90+INT8 retains 77% of facts on Llama 7B vs 32% unprotected. See [RESULTS.md](RESULTS.md) for the full scaling analysis.
-
-**Recommendation**: Use CF90 on 7B+ models for production. On smaller models, use it only when fact retention matters more than generation quality (e.g., knowledge distillation, fact-checking, retrieval).
-
-### Confidence Cartography: Locate, Then Protect
-
-This work pairs with [Confidence Cartography](https://github.com/SolomonB14D3/confidence-cartography) ([![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18718611.svg)](https://doi.org/10.5281/zenodo.18718611)), which maps where a model is uncertain by measuring the probability it assigns to its own tokens (teacher-forced confidence). Together they form a two-stage pipeline:
-
-1. **Cartography** identifies *which* weight regions encode uncertain or contested knowledge (ρ = 0.652 correlation with human false-belief prevalence, p = 0.016).
-2. **Intelligent SVD** determines *how* to protect those weights during fine-tuning, compressing noise out of attention projections so downstream updates cannot overwrite factual signal.
-
-Run confidence cartography first to locate fragile knowledge, then apply CF90 to lock it in before any further training. This converts a blanket freeze into a targeted intervention. A standalone [toolkit](https://github.com/SolomonB14D3/confidence-cartography-toolkit) ([![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18718649.svg)](https://doi.org/10.5281/zenodo.18718649)) is available for the confidence extraction engine.
-
-### Compression Safety Guide
-
-| Layer Type | Safe to Compress | Notes |
-|------------|------------------|-------|
-| **Q, K, O projections** | Yes — 70% rank | Main compression target |
-| **V projection** | 90-95% only | Marginal gains, high risk below 90% |
-| **MLP layers** | Never | Destroys model at any compression level |
-
-Validated on Qwen (0.5B–32B) and Llama 2 (7B). Same safety thresholds apply across architectures.
+See our paper for experimental results and analysis.
 
 ## Quick Start
 
@@ -73,11 +19,10 @@ from intelligent_svd import apply_cf90
 
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B", torch_dtype=torch.float32)
 stats = apply_cf90(model, ratio=0.7, freeze_ratio=0.75)
-# Compressed 72 matrices, frozen 21/28 layers
 # Now fine-tune gently: 1 epoch, lr=1e-5, batch_size=4
 ```
 
-Or step by step if you want more control:
+Or step by step:
 
 ```python
 from intelligent_svd import compress_qko, freeze_layers
@@ -91,44 +36,34 @@ n_compressed = compress_qko(model, ratio=0.7)
 stats = freeze_layers(model, ratio=0.75)
 
 # Step 3: Fine-tune gently on your data
-# Use: 1 epoch, lr=1e-5, batch_size=4
 ```
 
-### Importance-Guided Compression (for aggressive ratios)
+### Importance-Guided Compression
 
-When compressing below 70%, standard SVD starts losing facts. The importance-guided variant uses gradient information to decide which singular values to keep, preserving +26.7 percentage points more factual knowledge at 50% compression.
-
-How it works: run a few forward+backward passes on factual probe prompts (e.g., "The capital of France is Paris."), accumulate absolute gradients for each weight in Q/K/O projections, then during SVD, score each singular value by its contribution to those high-gradient directions instead of just keeping the largest ones by magnitude.
+When compressing below 70%, the importance-guided variant uses gradient information to decide which singular values to keep:
 
 ```python
 from intelligent_svd import compute_importance, compress_qko_importance
 
-# Compute gradient-based importance (7 built-in factual probes, or pass your own)
 importance = compute_importance(model, tokenizer)
-
-# You can also pass domain-specific probes:
-# importance = compute_importance(model, tokenizer, prompts=[
-#     "Aspirin inhibits cyclooxygenase.",
-#     "TCP uses a three-way handshake.",
-# ])
-
-# Compress with importance guidance (+26.7 pp better at 50% compression)
 n_compressed = compress_qko_importance(model, importance, ratio=0.5)
 ```
 
-### Model Compatibility
+### Compression Safety Guide
 
-CF90 works on any HuggingFace causal LM that stores attention layers in `model.model.layers[i].self_attn.{q,k,o}_proj` (the standard layout for Qwen, Llama, Mistral, and most recent architectures). GPT-2-style models using `model.transformer.h` are also supported.
+| Layer Type | Safe to Compress | Notes |
+|------------|------------------|-------|
+| **Q, K, O projections** | Yes — 70% rank | Main compression target |
+| **V projection** | 90-95% only | High risk below 90% |
+| **MLP layers** | Never | Destroys model at any compression level |
 
-Validated on:
-- **Qwen2.5**: 0.5B, 1.5B, 7B, 32B (full experimental suite)
-- **Llama 2**: 7B (Experiments C + D, 3 seeds each)
+## Model Compatibility
 
-The architecture hooks should work on Mistral without changes (same `model.model.layers` layout). If you test on another model family, please open an issue with results.
+Works on any HuggingFace causal LM with standard attention layouts (`model.model.layers[i].self_attn.{q,k,o}_proj`). GPT-2-style models using `model.transformer.h` are also supported.
 
-## Reproduction
+**Validated:** Qwen2.5 (0.5B–32B), Llama 2 (7B)
 
-### Prerequisites
+## Install
 
 ```bash
 pip install torch transformers datasets safetensors lm-eval scipy numpy
@@ -139,64 +74,15 @@ pip install mlx mlx-lm
 
 ### Quick Demo
 
-See the key findings yourself in ~30 minutes:
-
 ```bash
-# Llama 2 7B (default) — knowledge protection + repetition reduction
+# Llama 2 7B (default)
 python examples/quick_demo.py
 
 # Smaller model, faster (~5 min)
 python examples/quick_demo.py --model Qwen/Qwen2.5-0.5B
 ```
 
-This runs both experiments end-to-end: CF90 knowledge protection under conflicting fine-tuning (78% vs 32% retention) and the generation quality test showing repetition drops from 40% to 25% at 7B scale.
-
-### Run Benchmarks
-
-```bash
-# Full benchmark: SVD compression sweep on Qwen-0.5B
-python experiments/exp11_full_benchmark.py
-
-# Knowledge protection: CF90 vs baselines
-python experiments/exp18_knowledge_protection.py
-
-# Multi-seed validation with statistical testing
-python experiments/run_final_validation.py
-```
-
-### Platform Notes (Apple Silicon)
-
-- Use **CPU** for PyTorch training/compression (MPS has matmul errors with Qwen; also produces NaN gradients when training with frozen layers on any model)
-- Use **MLX** for fast inference (`mlx_lm`)
-- Set `HF_HOME` to external storage for large models
-
-## Experiments
-
-| # | Experiment | Key Finding |
-|---|-----------|-------------|
-| 1 | Factual accuracy | Importance-guided SVD preserves facts better |
-| 2 | Overparameterization sweep | 4x overparameterization + compress beats train-small by 55% |
-| 3 | Qwen compression | Compression improves accuracy: 66.7% → 80% |
-| 4 | Quantization stacking | SVD + INT8 beats INT8-only |
-| 5 | Layer sensitivity | Q,K,O safe; V marginal; MLP never |
-| 6 | Scale test | Larger compressed > smaller raw (when below ceiling) |
-| 7 | SVD + quant benchmark | Validates stacking on real benchmarks |
-| 11 | Full benchmark | SVD90 best: +1.4% avg over baseline |
-| 16 | Conflicting data | Measures forgetting under data conflict |
-| 18 | Knowledge protection | **CF90: 75% retention vs 5% unprotected** |
-| 21 | CF90 hierarchical | TruthfulQA +5%, validated at 7B scale |
-| A | SVD90 vs baseline (5 seeds) | No significant benchmark difference |
-| B | CF90 vs LoRA (3 seeds) | CF90 73% > LoRA-r8 68% |
-| C | CF90 protection (5 seeds) | **p=0.0072**, CF90 79% vs freeze 65% |
-| D | CF90 + INT8 full pipeline | 72% retention through quant; generation quality tradeoff |
-| C-Llama | CF90 protection on Llama 2 7B (3 seeds) | 68% CF90 vs 65% freeze-only; cross-arch validation |
-| D-Llama | CF90 + INT8 on Llama 2 7B (3 seeds) | 78% retention; CF90 reduces repetition from 40% to 25% |
-
-See [RESULTS.md](RESULTS.md) for detailed numbers and analysis.
-
-## Validation with rho-eval
-
-If you have [rho-eval](https://github.com/SolomonB14D3/knowledge-fidelity) installed, you can validate behavioral impact of compression in one call:
+### Validation with rho-eval
 
 ```bash
 pip install intelligent-svd[audit]  # installs rho-eval>=2.2
@@ -210,34 +96,12 @@ result = validate_compression(
     ratio=0.7, freeze_ratio=0.75,
     behaviors="factual,toxicity,sycophancy",
 )
-
-print(f"Truth Retention Score: {result.truth_retention_score:.3f}")
-print(f"Passed: {result.passed}")  # True if no behavior dropped > 0.05
+print(f"Passed: {result.passed}")
 ```
-
-Without `rho-eval` installed, all core functions (`apply_cf90`, `compress_qko`, etc.) work normally.
-
-## Verification Log
-
-Every quantitative claim in this README is traceable to a specific result file.
-
-| Claim | Value | File | Seeds | Notes |
-|-------|-------|------|:-----:|-------|
-| CF90 79% retention | 0.79 mean | `results/final_validation/experiment_c_protection.json` | 5 | p=0.0072 vs freeze-only 65% |
-| Llama 2 7B 78% retention | 76.7% (rounded) | `results/llama_validation/experiment_c_llama.json` | 3 | Seeds: 0.75, 0.75, 0.80 |
-| SVD+INT8 +5.3% composite | 85.3% vs 80.0% | `results/final_validation/experiment_d_cf90_quant_pipeline.json` | 1 | Qwen-1.5B |
-| Importance +26.7 pp at 50% | 73.3% vs 46.7% | `RESULTS.md` lines 63-66 | 1 | Deterministic SVD |
-| CF90 7B scale 73% | 73% avg | `RESULTS.md` lines 195-203 | 1 | Qwen 2.5-7B |
-| TruthfulQA +5% | 39.1% → 44.1% | `RESULTS.md` lines 187-193 | 1 | Qwen-0.5B |
-| Repetition 40% → 25% | 40.3% → 24.9% | `results/llama_validation/experiment_d_llama.json` | 3 | Llama 2 7B |
-
-*Last verified: 2026-02-28*
 
 ## Citation
 
-If you use this work, please cite:
-
-```
+```bibtex
 @software{intelligent_svd,
   author = {Bryan Sanchez},
   title = {CF90: Knowledge-Preserving Compression for LLMs via SVD and Layer Freezing},
@@ -247,14 +111,10 @@ If you use this work, please cite:
 }
 ```
 
-The rho metric used for knowledge auditing is introduced in:
-
-> Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models.* Zenodo. [doi:10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506)
-
 ### Related Projects
 
-- [knowledge-fidelity](https://github.com/SolomonB14D3/knowledge-fidelity) — Unifies CF90 compression with behavioral auditing. Includes `rho-audit` CLI for standalone behavioral profiling.
-- [confidence-cartography](https://github.com/SolomonB14D3/confidence-cartography) — The foundational false-belief detection method.
+- [rho-eval](https://github.com/SolomonB14D3/knowledge-fidelity) — Behavioral auditing toolkit for LLMs
+- [confidence-cartography](https://github.com/SolomonB14D3/confidence-cartography) — Teacher-forced confidence as a false-belief sensor
 
 ## License
 
