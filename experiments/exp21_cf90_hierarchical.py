@@ -7,14 +7,9 @@ Based on exp17 findings, the winning formula:
 2. Compress frozen layers with importance-guided SVD at 70% rank
 3. Gentle fine-tuning (1 epoch, 1e-5 LR)
 
-Results from exp17 on Qwen-0.5B:
-- Freeze 75% + Compress: 75% retention (+15% over freeze-only)
-- Freeze 75% only: 60% retention
-- Freeze 90% + Compress: 40% retention
-- No protection: 5% retention
-
 Key: Compression makes frozen representations more "essential",
-improving knowledge retention during fine-tuning.
+improving knowledge retention during fine-tuning. See paper for
+detailed retention comparisons.
 """
 
 import torch
@@ -153,7 +148,7 @@ def apply_compress_freeze(model, config, tokenizer):
     """Apply compression and freeze strategy.
 
     Based on exp17 findings:
-    - 75% freeze + compress = best retention (+15% over freeze-only)
+    - 75% freeze + compress = best retention
     - Compress at 70% rank with importance-guided SVD
     """
     layers = get_layers(model)

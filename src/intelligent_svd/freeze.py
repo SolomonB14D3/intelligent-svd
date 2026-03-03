@@ -1,9 +1,8 @@
 """
 Layer freezing strategies for knowledge preservation during fine-tuning.
 
-Key finding (exp18): Freezing 75% of layers + SVD compression + gentle fine-tuning
-(1 epoch, 1e-5 LR) preserves 75% of factual knowledge vs 60% with freeze alone
-and 5% with no protection.
+Freezing layers + SVD compression + gentle fine-tuning (1 epoch, 1e-5 LR)
+preserves significantly more factual knowledge than freeze alone or no protection.
 
 Critical: Aggressive fine-tuning (3+ epochs, 2e-5+ LR) negates the benefit
 of compression — compression actually hurts retention with aggressive FT.
